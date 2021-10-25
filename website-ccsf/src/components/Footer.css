@@ -1,0 +1,15 @@
+.footer-container {
+    background-color: #0e0b16;
+    padding: 4rem 1rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 3.75em;
+    width: 100%;
+  }
+
+.footer-container p{
+    color: #e7dfda;
+    text-align: center;
+}

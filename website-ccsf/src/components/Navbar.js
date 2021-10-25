@@ -32,7 +32,7 @@ function Navbar() {
             <nav className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo">
-                        BestPlaces <i className="fab fa-typo3"></i>
+                    <i className="fas fa-route"></i> BestPlaces
                     </Link>
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -59,7 +59,7 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                        <form action='/' method='get'>
+                            <form action='/' method='get'>
                                 <input
                                     type='search'
                                     className='nav-search'
