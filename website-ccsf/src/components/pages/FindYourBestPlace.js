@@ -1,6 +1,15 @@
 import React from 'react';
 import '../../App.css';
+import Footer from '../Footer';
 
-export default function FindYourBestPlace() {
-    return <h1>Find your best place</h1>;
+function FindYourBestPlace() {
+    return (
+    <>
+        <h1>Find your best place</h1>
+        <Footer />
+     </>
+    );
 }
+
+export default FindYourBestPlace;
+

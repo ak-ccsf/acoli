@@ -1,6 +1,15 @@
 import React from 'react';
 import '../../App.css';
+import Footer from '../Footer';
+import SearchQualityOfLiveSection from '../SearchQualityOfLiveSection';
 
-export default function QualityOfLive() {
-    return <h1>Quality of live</h1>;
+function QualityOfLive() {
+    return ( 
+    <>
+        <SearchQualityOfLiveSection />
+        <Footer />
+    </>
+    );
 }
+ 
+export default QualityOfLive;
