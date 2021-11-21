@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="description" content="example quiz for acoli/best places">
+   <title>Best Places - Quiz</title>
+   <style>
+input[type=range] {
+    width: 100%;
+    max-width: 90%;
+    margin-left: 0;
+}
+
+/* style datalist */
+input[type=range] + datalist {
+    display: block;
+    margin-top: -4px;
+}
+input[type=range] + datalist option {
+    display: inline-block;
+    width: calc((90% - 12px) / (var(--list-length) - 1));
+    text-align: center;
+}
+input[type=range] + datalist option:first-child {
+    width: calc((90% - 12px) / ((var(--list-length) - 1) * 2) + 6px);
+    text-align: left;
+}
+input[type=range] + datalist option:last-child {
+    width: calc((90% - 12px) / ((var(--list-length) - 1) * 2) + 6px);
+    text-align: right;
+    }
+.dropbtn {
+  background-color: #888888;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 0px;
+  border: none;
+  border-radius: 20px;
+  height: 1.5em;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content .checklabel {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content .checklabel:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: blue;}
+h2 {
+  width: 50%;
+  height: 60px;
+  margin: 0;
+  padding: 20px;
+  display: inline;
+}
+   </style>
+</head>
+
+<body>
+<div id='test'></div>
+<script>
+// temporary values for tested before database is connected
+// countries = 'SELECT country_name FROM countries'
+// regions = 'SELECT DISTINCT region FROM cities NATURAL JOIN countries WHERE country = ' + selected country
+var countries = ["United States", "Canada"];
+var country_regions = {
+    "United States": ["CA", "NY", "PA", "TN"],
+    "Canada": ["ON", "NS", "QC", "BC"]
+};
+    
+// buildCoutryList() - adds countries from database (or list, for now) to
+//     select menu
+function buildCountryList() {
+    // populate countryList with countries
+    for (let i = 0; i < countries.length; i++) {
+        var country = document.createElement('option');
+        country.value = countries[i];
+        country.innerHTML = countries[i];
+        document.getElementById('selectCountry').appendChild(country);
+    }
+}
+
+
+// buildRegionList() - add relevant regions to region select menu
+function buildRegionList() {
+    clearRegionList();
+    if(document.getElementById('selectCountry').value == '') {
+        regions = [];
+    }
+    else {
+        regions = country_regions[document.getElementById('selectCountry').value];
+        for (let i = 0; i < regions.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = regions[i];
+            opt.innerHTML = regions[i];
+            document.getElementById('selectRegion').appendChild(opt);
+        }
+    }
+}
+
+
+// clearRegionList() - clear options from region select menu
+function clearRegionList() {
+    var regions = document.getElementById('selectRegion');
+    while (regions.length > 1) {
+        regions[1].remove();
+    }
+}
+
+
+// addRegion() - adds country (, region) from select menus to chosen regions
+function addRegion() {
+    var country = document.getElementById('selectCountry').value;
+    var region = document.getElementById('selectRegion').value;
+    var opt = document.createElement('option');
+    if(country == "") {
+        return;
+    } 
+    if(region != "") {
+        opt.value = country + ":" + region;
+        opt.innerHTML = region + ", " + country;
+    }
+    else {
+        opt.value = country;
+        opt.innerHTML = country;
+    }
+    // don't add dups
+    var chosen = document.getElementById('chosenRegions');
+    for (let i = 0; i < chosen.length; i++) {
+        if (chosen[i].value == opt.value) {
+            return;
+        }
+    }
+    document.getElementById('chosenRegions').appendChild(opt);
+}
+
+
+// removeRegion() - remove selected region(s) from chosen regions
+function removeRegion() {
+    var chosen = document.getElementById('chosenRegions');
+    for (let i = 0; i < chosen.length; i++) {
+        if(chosen[i].selected) {
+            chosen[i].remove();
+            i--;
+        }
+    }
+}
+
+
+// buildSelectClause() - builds and returns a select clause for a SQL query
+//     based on relative importance of different factors as ranked by user
+function buildSelectClause() {
+    var select = '';
+    var count, rank;
+    var score = [];
+    var max_score = 0;
+    var indices = ['purchasing_power_index',
+                   'safety_index',
+                   'health_care_index',
+                   'climate_index',
+                   'cost_of_living_index',
+                   'property_price_to_income_ratio',
+                   'traffic_commute_time_index',
+                   'pollution_index'];
+    var index_calc = [];
+    for (let i = 0; i < indices.length; i++) {
+        count = '(SELECT COUNT(*) FROM quality_of_life WHERE ' + indices[i] + ' IS NOT NULL)';
+        rank = '(RANK() OVER (ORDER BY IFNULL(' + indices[i] + ', ';
+        if (i < 4) {
+            rank += ' -9999) DESC'; // desc - replace null with -9999
+        }
+        else {
+            rank += ' 9999) ASC'; // asc - replace null with 9999
+        }
+        rank += '))';
+        index_calc[i] = '(100 *( 1 + ' + count + ' - ' + rank + ') / (1.0 * ' + count + '))'
+    }
+    for (let i = 0; i < indices.length; i++) {
+        multiplier = document.getElementById(indices[i]).value
+        if (multiplier != 0) {
+            score.push("(" + multiplier + " * " + index_calc[i] + ")");
+            max_score += 100 * multiplier;
+        }        
+    }
+    score = score.join(' + ');
+    if (score == '') {
+        score = 'quality_of_life_index';
+        max_score = '(SELECT MAX(quality_of_life_index) FROM quality_of_life)'
+    }
+    // note: may only meed city_id and percent_match, everything else for testing purposes
+    select = 'SELECT city_id, city_name, region, country_name, (' + score + ') AS score, ' +
+            '((' + score + ') / ( 1.0 * ' + max_score + ')) * 100 AS percent_match ';
+    return select;
+}
+
+
+// buildWhereClause() - builds and returns a WHERE clause for a SQL query to
+//     filter results as specified by user
+function buildWhereClause() {
+    var where = '';
+    var regions = [];
+    var chosen = document.getElementById('chosenRegions');
+    for (let i = 0; i < chosen.length; i++) {
+        regions.push(chosen[i]);
+    }
+    if (regions.length == 0) {
+        return '';
+    }
+    where += 'WHERE ';
+    var conditions = [];
+    for (let i = 0; i < regions.length; i++) {
+        var condition = '(';
+        var country_region = regions[i].value.split(':');
+        condition += 'country_name = "' + country_region[0] + '"';
+        if (country_region.length > 1) {
+            condition += ' AND region = "' + country_region[1] + '"';
+        }
+        condition += ') ';
+        conditions.push(condition);
+    }
+    where += conditions.join(' OR ');
+    return where;
+}
+
+
+// getPlaces() - puts together clauses returned by buildSelectClause() and
+//     buildWhereClause() to create a complete SQL query
+function getPlaces() {
+    var query;
+    select = buildSelectClause();
+    from = 'FROM quality_of_life NATURAL JOIN cities NATURAL JOIN countries ';
+    order = 'ORDER BY score DESC';
+    where = buildWhereClause();
+    query = select + from + where + order;
+    document.write(query);
+}
+</script>
+<h1>Find Your Best Place Quiz</h1>
+<hr>
+<br>
+<form name="bestPlaceQuiz">
+<h2>Purchasing Power:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="purchasing_power_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Safety:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="safety_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Health Care:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="health_care_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Climate:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content">
+    <div class="checklabel"><input type="checkbox" id="climate_jan" name="climate_jan" checked>
+    <label for="climate_jan">January</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_feb" name="climate_feb" checked>
+    <label for="climate_feb">February</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_mar" name="climate_mar" checked>
+    <label for="climate_mar">March</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_apr" name="climate_apr" checked>
+    <label for="climate_apr">April</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_may" name="climate_may" checked>
+    <label for="climate_may">May</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_jun" name="climate_jun" checked>
+    <label for="climate_jun">June</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_jul" name="climate_jul" checked>
+    <label for="climate_jul">July</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_aug" name="climate_aug" checked>
+    <label for="climate_aug">August</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_sep" name="climate_sep" checked>
+    <label for="climate_sep">September</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_oct" name="climate_oct" checked>
+    <label for="climate_oct">October</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_nov" name="climate_nov" checked>
+    <label for="climate_nov">November</label></div>
+    <div class="checklabel"><input type="checkbox" id="climate_dec" name="climate_dec" checked>
+    <label for="climate_dec">December</label></div>
+  </div>
+</div>
+<input type="range" min="0" max="4" id="climate_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Cost of Living:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="cost_of_living_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Property Price to Income Ratio:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="property_price_to_income_ratio" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Traffic/Commute Time:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content">
+    <div class="checklabel"><input type="checkbox" id="walking" name="walking" checked>
+    <label for="walking">Walking</label></div>
+    <div class="checklabel"><input type="checkbox" id="car" name="car" checked>
+    <label for="car">Car</label></div>
+    <div class="checklabel"><input type="checkbox" id="bike" name="bike" checked>
+    <label for="bike">Bike</label></div>
+    <div class="checklabel"><input type="checkbox" id="motorbike" name="motorbike" checked>
+    <label for="motorbike">Motorbike</label></div>
+    <div class="checklabel"><input type="checkbox" id="bus" name="bus" checked>
+    <label for="bus">Bus/Trolleybus</label></div>
+    <div class="checklabel"><input type="checkbox" id="tram" name="tram" checked>
+    <label for="tram">Tram/Streetcar</label></div>
+    <div class="checklabel"><input type="checkbox" id="train" name="train" checked>
+    <label for="train">Train/Metro</label></div>
+</div>
+</div>
+<input type="range" min="0" max="4" id="traffic_commute_time_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br><br>
+<h2>Pollution:</h2><div class="dropdown">
+  <button class="dropbtn">i</button>
+  <div class="dropdown-content"></div>
+</div>
+<input type="range" min="0" max="4" id="pollution_index" list="my-datalist"/>
+<datalist id="my-datalist" style="--list-length: 5;">
+  <option>Not Important</option>
+  <option></option>
+  <option>Somewhat Important</option>
+  <option></option>
+  <option>Very Important</option>
+</datalist>
+<br><br>
+<p>Filter results by location:</p>
+<label for="countries">Country:</label>
+<select id="selectCountry" onchange="buildRegionList()">
+<option value="">---Select Country---</option>
+</select>
+<label for="regions">Region:</label>
+<select id="selectRegion">
+<option value="">---Any Region---</option>
+</select>
+<input type='button' onclick="addRegion()" value="Add">
+<br><br>
+<label for="chosenRegions">Selected Regions:</label>
+<br>
+<select id="chosenRegions" multiple>
+</select>
+<input type='button' onclick='removeRegion()' value="Remove">
+<script> buildCountryList(); buildRegionList(); </script>
+<br><br>
+<input type='button' onClick="getPlaces()" value='Find My Place!'>
+</form>
+</body>
+</html>
+<!--
+Code shamelessly copied from stackoverflow and w3schools.
+Sliders:
+https://stackoverflow.com/questions/26612700/ticks-for-type-range-html-input
+Dropdown menu:
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+--->
