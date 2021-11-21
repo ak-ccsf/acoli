@@ -46,7 +46,7 @@ function buildSelectClause() {
     $max_score = "(SELECT MAX(quality_of_life_index) FROM quality_of_life)";
   }
   //$select = "SELECT city_id, city_name, region, country_name, (". $score . ") AS score, " . "((" . $score . ") / ( 1.0 * " . $max_score . ")) * 100 AS percent_match ";
-  $select = "SELECT city_name, region, country_name, image_url, wiki_url, " . "((" . $score . ") / ( 1.0 * " . $max_score . ")) * 100 AS percent_match ";
+  $select = "SELECT *, " . "((" . $score . ") / ( 1.0 * " . $max_score . ")) * 100 AS percent_match ";
   return $select;
 };
 
@@ -60,7 +60,7 @@ function buildWhereClause() {
     for ($i = 0; $i < count($chosen); $i++) {
         array_push($regions, $chosen[$i]);
     }
-    if (count($regions) == 0) {
+    if (count($regions) == 1) {
         return '';
     }
     $where .= 'WHERE ';
@@ -84,7 +84,9 @@ $query = buildSelectClause() . "FROM cities NATURAL JOIN countries NATURAL JOIN 
        . buildWhereClause() . " ORDER BY percent_match DESC";
 $results = $db->query($query);
 echo "<h1>Results - Your Top Cities</h1>\n<hr>";
+echo "<table id='resultTable'>";
 for($i = 0; $i < 10; $i++) {
+    echo "<tr><td colspan='2'>";
     $row = $results->fetchArray();
     $line = "<h2>" . ($i + 1) . '. ' . $row['city_name'] . ', ';
     if($row['region'] != '') {
@@ -92,7 +94,35 @@ for($i = 0; $i < 10; $i++) {
     }
     $line .= $row['country_name'] . ':&emsp;' . $row['percent_match'] . "%</h2>";
     echo $line;
-    echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'><img src=\"" . $row['image_url'] . "\" width=\"500\" /></a>";
-    echo "<hr>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>";
+    echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'><img style='float:left' src=\"" . $row['image_url'] . "\" width=\"500\" /></a>";
+    echo "</td><td>";
+    echo "<table style='float:right' class='city_stats'  border='1'>";
+    echo "<tr><td>Quality of Life:</td>" .
+         "<td>Purchasing Power</td>" .
+         "<td>Safety</td>" .
+         "<td>Health Care</td>" .
+         "<td>Climate</td>" .
+         "<td>Cost of Living</td>" .
+         "<td>Property Price</td>" .
+         "<td>Traffic</td>" .
+         "<td>Pollution</td></tr>";
+    echo "<tr><td>" . $row['quality_of_life_index'] . "</td>" .
+         "<td>" . $row['purchasing_power_index'] . "</td>" .
+         "<td>" . $row['safety_index'] . "</td>" .
+         "<td>" . $row['health_care_index'] . "</td>" .
+         "<td>" . $row['climate_index'] . "</td>" .
+         "<td>" . $row['cost_of_living_index'] . "</td>" .
+         "<td>" . $row['property_price_to_income_ratio'] . "</td>" .
+         "<td>" . $row['traffic_commute_time_index'] . "</td>" .
+         "<td>" . $row['pollution_index'] . "</td></tr>";
+    //echo "<tr><td>Quality of Life:</td><td>" . $row['quality_of_life_index'] . $row['city_name'] . "</td></tr>";
+    echo "</table>";
+    echo "</td>";
+    echo "</tr>";
+    echo "<tr><td colspan='2'><hr></td></tr>";
 }
+echo "</table>";
 ?>
