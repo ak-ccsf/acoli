@@ -1,10 +1,9 @@
 <?php
 $db = new SQLite3('acoli.db');
-//echo $_POST['safety_index'];
-$results = $db->query('SELECT * FROM cities WHERE city_name = "New York" OR city_name = "San Francisco"');
-//while ($row = $results->fetchArray()) {
-//    var_dump($row);
-//}
+
+
+// buildSelectClause() - builds and returns a select clause for a SQL query
+//     based on relative importance of different factors as ranked by user
 function buildSelectClause() {
   $select = "";
   $score = [];
@@ -18,8 +17,11 @@ function buildSelectClause() {
               "traffic_commute_time_index",
               "pollution_index"];
   $index_calc = [];
-  for ($i = 0; $i < 2; $i++) {
-    $count = "(SELECT COUNT(*) FROM quality_of_life WHERE " . $indices[$i] . " IS NOT NULL)";
+  // scale scores - all range from 0-100 so none outweigh the others
+  for ($i = 0; $i < count($indices); $i++) {
+    $count = "(SELECT COUNT(*) FROM quality_of_life WHERE "
+               . $indices[$i] . " IS NOT NULL)";
+    // rank() - get percentile to prevent ouliers from skewing numbers
     $rank = "(RANK() OVER (ORDER BY IFNULL(" . $indices[$i] . ", ";
     if ($i < 4) {
       $rank .= " -9999) DESC";
@@ -30,7 +32,8 @@ function buildSelectClause() {
     $rank .= "))";
     $index_calc[$i] = "(100 *( 1 + " . $count . " - " . $rank . ") / (1.0 * " . $count . "))";
   }
-  for ($i = 0; $i < 2; $i++) {
+  // use importance rankings from quiz as multipliers
+  for ($i = 0; $i < count($indices); $i++) {
     $multiplier = $_POST[$indices[$i]];
     if ($multiplier != 0) {
       array_push($score, ("(" . $multiplier . " * " . $index_calc[$i] . ")"));
@@ -47,7 +50,38 @@ function buildSelectClause() {
   return $select;
 };
 
-$query = buildSelectClause() . "FROM cities NATURAL JOIN countries NATURAL JOIN quality_of_life JOIN image_urls ON cities.city_id = image_urls.city_id ORDER BY percent_match DESC";
+
+// buildWhereClause() - builds and returns a WHERE clause for a SQL query to
+//     filter results as specified by user
+function buildWhereClause() {
+    $where = '';
+    $regions = [];
+    $chosen = explode(';', $_POST['regionsText']);
+    for ($i = 0; $i < count($chosen); $i++) {
+        array_push($regions, $chosen[$i]);
+    }
+    if (count($regions) == 0) {
+        return '';
+    }
+    $where .= 'WHERE ';
+    $conditions = [];
+    for ($i = 0; $i < count($regions); $i++) {
+        $condition = '(';
+        $country_region = explode(':', $regions[$i]);
+        $condition .= 'country_name = "' . $country_region[0] . '"';
+        if (count($country_region) > 1) {
+            $condition .= ' AND region = "' . $country_region[1] . '"';
+        }
+        $condition .= ') ';
+        array_push($conditions, $condition);
+    }
+    $where .= implode(' OR ', $conditions);
+    return $where;
+}
+
+
+$query = buildSelectClause() . "FROM cities NATURAL JOIN countries NATURAL JOIN quality_of_life JOIN image_urls ON cities.city_id = image_urls.city_id "
+       . buildWhereClause() . " ORDER BY percent_match DESC";
 $results = $db->query($query);
 echo "<h1>Results - Your Top Cities</h1>\n<hr>";
 for($i = 0; $i < 10; $i++) {

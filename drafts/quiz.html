@@ -158,6 +158,7 @@ function addRegion() {
         }
     }
     document.getElementById('chosenRegions').appendChild(opt);
+    document.getElementById('regionsText').value += opt.value + ';';
 }
 
 
@@ -168,6 +169,10 @@ function removeRegion() {
         if(chosen[i].selected) {
             chosen[i].remove();
             i--;
+
+            // TODO: account for names that may be substrings of other names
+            // remove newlines
+            document.getElementById('regionsText').value.replace(chosen[i].value, ''); 
         }
     }
 }
@@ -217,7 +222,7 @@ function getPlaces() {
 <h1>Find Your Best Place Quiz</h1>
 <hr>
 <br>
-<form name="bestPlaceQuiz" action="result.php" onsubmit="return true" method="post">
+<form name="bestPlaceQuiz" id="bestPlaceQuiz" action="result.php" onsubmit="return true" method="POST">
 <h2>Purchasing Power:</h2><div class="dropdown">
   <button class="dropbtn">i</button>
   <div class="dropdown-content"></div>
@@ -326,9 +331,7 @@ function getPlaces() {
 <br><br>
 <p>Filter results by location:</p>
 <label for="countries">Country:</label>
-<select id="selectCountry" onchange="buildRegionList()">
-<option value="">---Select Country---</option>
-</select>
+<!-- below this line is in quiz.php
 <label for="regions">Region:</label>
 <select id="selectRegion">
 <option value="">---Any Region---</option>
@@ -346,8 +349,4 @@ function getPlaces() {
 </form>
 </body>
 </html>
-<!--
-Code borrowed from stackoverflow:
-Sliders:
-https://stackoverflow.com/questions/26612700/ticks-for-type-range-html-input
---->
+-->
