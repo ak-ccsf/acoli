@@ -56,18 +56,18 @@ function buildSelectClause() {
 function buildWhereClause() {
     $where = '';
     $regions = [];
-    $chosen = explode(';', $_POST['regionsText']);
+    $chosen = explode(';;', $_POST['regionsText']);
     for ($i = 0; $i < count($chosen); $i++) {
         array_push($regions, $chosen[$i]);
     }
-    if (count($regions) == 1) {
+    if (count($regions) < 3) {
         return '';
     }
     $where .= 'WHERE ';
     $conditions = [];
-    for ($i = 0; $i < count($regions); $i++) {
+    for ($i = 1; $i < count($regions) - 1; $i++) {
         $condition = '(';
-        $country_region = explode(':', $regions[$i]);
+        $country_region = explode('::', $regions[$i]);
         $condition .= 'country_name = "' . $country_region[0] . '"';
         if (count($country_region) > 1) {
             $condition .= ' AND region = "' . $country_region[1] . '"';

@@ -12,6 +12,14 @@ while($row = $countries->fetchArray()) {
 }
 $selectCountry .= '</select>';
 echo $selectCountry;
+$country_regions = $db->query('SELECT DISTINCT region, country_name FROM cities NATURAL JOIN countries WHERE region != "" ORDER BY region');
+echo '<script>';
+while($row = $country_regions->fetchArray()) {
+echo 'if("' . $row['country_name'] . '" in country_regions) {';
+echo 'country_regions["' . $row['country_name'] . '"].push("' . $row['region'] . '");}';
+echo 'else { country_regions["' . $row['country_name'] . '"] = ["' . $row['region'] . '"];}';
+}
+echo '</script>';
 echo '<label for="regions">Region:</label>
 <select id="selectRegion">
 <option value="">---Any Region---</option>
@@ -20,9 +28,9 @@ echo '<label for="regions">Region:</label>
 <br><br>
 <label for="chosenRegions">Selected Regions:</label>
 <br>
-<select id="chosenRegions" multiple>
+<select id="chosenRegions" multiple style="width:400px">
 </select>
-<textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" style="display:none"></textarea>
+<textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" readonly style="display:none">;;</textarea>
 <input type=\'button\' onclick=\'removeRegion()\' value="Remove">
 <script> buildCountryList(); buildRegionList(); </script>
 <br><br>
