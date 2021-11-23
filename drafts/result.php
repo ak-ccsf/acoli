@@ -97,7 +97,7 @@ for($i = 0; $i < 10; $i++) {
     echo "</tr>";
     echo "<tr>";
     echo "<td>";
-    echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'><img style='float:left' src=\"" . $row['image_url'] . "\" width=\"500\" /></a>";
+    echo "<img style='float:left' src=\"" . $row['image_url'] . "\" width=\"500\" />";
     echo "</td><td>";
     echo "<table style='float:right' class='city_stats'  border='1'>";
     echo "<tr><td>Quality of Life:</td>" .
@@ -121,7 +121,10 @@ for($i = 0; $i < 10; $i++) {
     //echo "<tr><td>Quality of Life:</td><td>" . $row['quality_of_life_index'] . $row['city_name'] . "</td></tr>";
     echo "</table>";
     echo "</td>";
-    echo "</tr>";
+    echo "</tr><tr><td colspan='2' style='text-align:center'>";
+    echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'>Read More</a> | ";
+    echo "<a href='https://www.google.com/maps/place/" . $row['latitude'] . "," . $row['longitude'] . "' target='_blank'>Go There Now!</a>";
+    echo "</td></tr>";
     echo "<tr><td colspan='2'><hr></td></tr>";
 }
 echo "</table>";
