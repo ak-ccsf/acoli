@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>AQOLI</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <div class="icon">
+        <i class="material-icons md-48">maps_home_work</i>
+      </div>
+
+        <form id="search_form" class="main" action="search.php" method="post" autocomplete="on">
+          <select id="search_area_list" class="w3-input w3-border w3-round" name="list" style="width:150px;">
+            <!-- TODO/WIP  search by country  -->
+            <!-- TODO/WIP search by continent -->
+            <option value="search_by_country">Country</option>
+            <option value="search_by_continent">Continent</option>
+          </select>
+          <input type="text" id="search_box" name="input" placeholder="search for cities">
+          <input type="submit" id="search_button" name="search" value="Search" >
+        </form>
+        </br><text id="validate"></text>
+
+    </div>
+  </body>
+
+  <script>
+    // this is where our list goes for the autocomplete
+    allCityList = ["San Francisco",
+                   "New York",
+                   "London",
+                   "Amsterdam",
+                   "Venice",
+                   "St. Petersburg",
+                   "Shanghai",
+                   "Melbourne"];
+    //unused concat on all of our lists
+    allList = [];
+    //turns jQuery on for the search box and enables the autocomplete
+    //default source choice to default list choice
+    sourceChoice = allCityList;
+    //function to change autocomplete list when selection list is changed
+    function refreshArray () {
+      if (document.getElementById('search_area_list').value == "all_cities") {
+        sourceChoice = allCityList;
+      }
+      // cities within a country
+      //  else if (document.getElementById('search_area_list').value == "country_cities") {
+      //    sourceChoice = houseVoteList;
+      //  }
+      // cities within a continent
+      //  else if (document.getElementById('search_area_list').value == "continent_cities") {
+      //    sourceChoice = senateMemberList;
+      //  }
+      // other choice?
+      //  else if (document.getElementById('search_area_list').value == "other_cities") {
+      //    sourceChoice = senateVoteList;
+      //  }
+      //
+      // consider a search random city button that searches among cities with sufficient data
+      //
+      //
+        //updates this list in autcomplete
+        $("#search_box").autocomplete({
+          source:sourceChoice,
+          change: function( event, ui ) {
+          //run validation of input
+          validate();
+          },select: function(event, ui) {
+            //reset this value so that validate works in multiple cases
+            $('input[name=input]').val(ui.item.value);
+            validate();
+          }
+        });
+    }
+
+    //triggers array refresh when list is changed
+    $('#search_area_list').on('change', function(){
+      refreshArray();
+      $("#search_box").val("");
+    });
+    //validate entry
+    function validate () {
+      val = $("#search_box").val();
+      console.log("validate");
+      //changes text below if wrong answer in box
+      if (sourceChoice.includes(val)) {
+        $('input[type="submit"]').attr('disabled', false);
+        //could add something here for this case
+        $("#validate").text("");
+      }
+      else if (!sourceChoice.includes(val) && val != "") {
+        $('input[type="submit"]').attr('disabled', true);
+        $("#validate").text("Please select a city from the dropdown menu.");
+      }
+      else {
+        $("#validate").text("");
+      }
+    }
+
+    //starts the dance when page is loaded
+    $(document).ready(function() {
+      refreshArray();
+      $('input[type="submit"]').attr('disabled', true);
+      validate();
+      //checking results
+    });
+    $('#search_box').on('keypress', function(e) {
+      return e.which !== 13;
+    });
+    //validate data
+    $.widget( "ui.autocomplete", $.ui.autocomplete, {
+      options: {
+        close: function( event, ui ) {
+          if (typeof event.currentTarget == 'undefined') {
+            $(this).val("");
+          }
+        }
+      }
+    });
+  </script>
+</html>
