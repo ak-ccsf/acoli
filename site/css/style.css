@@ -1,0 +1,213 @@
+/** * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/) * http://cssreset.com */
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote,
+pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s,
+samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article,
+aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+output, ruby, section, summary,time, mark, audio, video {
+	margin: 0;	padding: 0;	border: 0;	font-size: 20px; font: inherit;
+	}
+
+/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {	display: block;}body {	line-height: 1;}ol, ul {	list-style: none;}blockquote, q {	quotes: none;}blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}table {	border-collapse: collapse;	border-spacing: 0;}
+
+/*=============================================
+=                  GENERAL                   =
+=============================================*/
+
+body {
+	font-size:20px;
+	font-family:Arial, sans-serif;
+}
+
+a.logo {
+	text-decoration:none;
+	color:inherit;
+	font-size: 44px;}
+
+a:hover {text-decoration:underline;}
+
+a{
+	text-decoration: none;
+	color: black;
+	font-size: 20px;}
+
+button:hover, a:hover {
+	opacity: 0.7;}
+
+a.contact{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+}
+
+a.one{
+	text-decoration: none;
+	color: blue;
+	font-size: 20px;
+}
+
+/*=============================================
+=                Member Page                  =
+=============================================*/
+
+
+#grid-container {
+	display: grid;
+	grid-template-areas:
+			'left_side right_side right_side';
+	grid-gap: 10px;
+	background-color: white;
+	padding: 10px;
+}
+/*
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}
+*/
+
+#left_side{
+	grid-area: left_side;
+	text-align: center;
+	padding: 20px 0;
+	font-size: 20px;}
+#card{
+	box-shadow: 6px 6px 4px 6px grey;
+	margin: auto;
+	text-align: center;
+	font-family: arial, sans-serif;
+	background-color: white;
+	position: sticky;
+	top: 30px;
+	margin-bottom: 250px;}
+#right_side{
+	grid-area: right_side;
+	color: black;
+	font-size: 20px;
+	padding: 0px;
+	background-color: white;}
+#bills{
+	text-align: left;
+	font-size: 20px;
+	box-shadow: 6px 6px 4px 6px grey;
+	margin: 20px; /*keep this*/
+	}
+.title {
+	color: grey;
+	font-size: 18px;}
+button {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+}
+
+.back{
+	color: white;
+	font-size: 20px;
+	box-shadow: 6px 6px 4px 6px grey;
+	margin: auto;
+	text-align: center;
+	font-family: arial, sans-serif;
+	position: sticky;
+	top: 90%;
+}
+
+th, td{
+	padding: 10px;
+	border-bottom: 1px solid #ddd;}
+
+tr:nth-child(odd) {background-color: #f2f2f2;}
+
+th.date{
+	width: 150px;
+}
+
+th.vote_id{
+	width: 50px;
+}
+
+.material-icons.md-48{
+	color: black;
+	font-size: 48px;
+}
+
+/*=============================================
+=                Index Page                   =
+=============================================*/
+
+
+.wrapper{
+	text-align: center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: auto;
+
+	display:flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items:center;
+	height:100%;
+}
+
+select {
+	border: none;
+	background-color: grey;
+	font-size: 18px;
+	color: white;
+}
+#search_box{
+	width: 500px;
+}
+#search_button{
+	background-color: grey;
+	border: none;
+	color: white;
+	padding: 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	width: 150px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.main{
+	display: flex;
+	flex-direction: row;
+}
+
+input[type="text"]::placeholder {
+
+	/* Firefox, Chrome, Opera */
+	text-align: center;
+	font-size: 18px;}
+
+.w3-input{padding:8px;
+	display:block;
+	border:none;
+	border-bottom:1px solid #ccc;
+	width:100%;}
+.w3-border{border:1px solid #ccc!important}
+.w3-round{
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;}
+
+div.sticky {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
