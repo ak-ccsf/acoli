@@ -1,7 +1,7 @@
 <?php
-define("SITE_ADDR", "http://localhost/tutorials/search_engine");
+define("SITE_ADDR", "http://localhost:8000/");
 //include("./include.php");
-$site_title = 'Simple Search Engine | HeyTuts.com tutorials';
+$site_title = 'aqoli';
 ?>
 <html>
 <head>
@@ -19,12 +19,12 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
 <div id="wrapper">
 
     <div id="top_header">
-        <div id="nav">
+        <!--<div id="nav">
             <a href="<?php echo SITE_ADDR; ?>/new_entry.php">New Entry</a>
-        </div>
+        </div>-->
 
         <div id="logo">
-            <h1><a href="<?php echo SITE_ADDR; ?>">simple search engine</a></h1>
+            <h1><a href="<?php echo SITE_ADDR; ?>">city search</a></h1>
         </div>
     </div>
 
@@ -35,8 +35,8 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                 <form action="" method="GET" name="">
                     <table>
                         <tr>
-                            <td><input type="text" name="k" placeholder="Search for something" autocomplete="off"></td>
-                            <td><input type="submit" name="" value="Search"></td>
+                            <td><input type="text" name="k" placeholder="search for a city" autocomplete="off"></td>
+                            <td><input type="submit" name="" value="search"></td>
                         </tr>
                     </table>
                 </form>
@@ -51,7 +51,7 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                 $k = trim($_GET['k']);
 
                 // create a base query and words string
-                $query_string = "SELECT city_name, region, country_name FROM cities NATURAL JOIN countries WHERE city_name ";
+                $query_string = "SELECT city_name, region, country_name, wiki_url FROM cities NATURAL JOIN countries WHERE city_name ";
 
                 $display_words = "";
                 // seperate each of the keywords
@@ -63,7 +63,7 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                 $query_string = substr($query_string, 0, strlen($query_string) - 14);
 
                 // connect to the database
-                // commented out mysqli example from tut to adapt our sqlite3 db
+                // commented out mysqli example to adapt our sqlite3 db
                 //$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
                 $conn = new SQLite3('acoli.db');
@@ -109,23 +109,19 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                     // display all the search results to the user
                     // uncoment mysqli fetch to fetch query results in an sqlite3 compatible way
                     //while ($row = mysqli_fetch_assoc($query)){
+                    // consider using a for loop with a value limiting how many results per page
                     while ($row = $query->fetchArray()) {
 
-                        // comment out tutorial's example to rewrite one that works with our db
+                        // adapted example with one that works with our db
                         echo '<tr>
-									<td><h3><a href="' . $row['url'] . '">' . $row['title'] . '</a></h3></td>
-								</tr>
-								<tr>
-									<td>' . $row['blurb'] . '</td>
-								</tr>
-								<tr>
-									<td><i>' . $row['url'] . '</i></td>
-								</tr>';
-
-                        // unsure how to write this to iterate through the query's results
-                        //echo '<tr>
-                        //  <td><h3>"'.$row['city_name']."</h3></td>
-                        //</tr>';
+                                  <td><h3><a href=https://en.wikipedia.org' . $row['wiki_url'] . '>' . $row['city_name'] . '</a></h3></td>
+                              </tr>
+                              <tr>
+                                  <td>' . $row['region'] . '</td>
+                              </tr>
+                              <tr>
+                                  <td><i>' . $row['country_name'] . '</i></td>
+                              </tr>';
                     }
 
                     echo '</table>';
@@ -133,6 +129,7 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                     echo 'No results found. Please search something else.';
             } else
                 echo '';
+
             ?>
 
         </div>
@@ -140,13 +137,7 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
 
     <div id="footer">
         <div class="left">
-            <a href="https://www.heytuts.com" target="_blank">HeyTuts.com</a>
-        </div>
-        <div class="right">
-            <a target="_blank" href="https://www.heytuts.com/web-dev/php/simple-search-engine-in-php">read the
-                article</a> |
-            <a target="_blank" href="https://www.heytuts.com/video/simple-search-engine-in-php">watch the video</a>
-        </div>
+            <a href="https://github.com/ak-ccsf/acoli" target="_blank">site code on github</a>
         <div class="clear"></div>
     </div>
 
