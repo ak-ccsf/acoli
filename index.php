@@ -1,6 +1,6 @@
 <?php
 define("SITE_ADDR", "http://localhost/tutorials/search_engine");
-include("./include.php");
+//include("./include.php");
 $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
 ?>
 <html>
@@ -52,15 +52,15 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
 
                 // create a base query and words string
                 $query_string = "SELECT city_name, region, country_name FROM cities NATURAL JOIN countries WHERE city_name ";
-                $display_words = "";
 
+                $display_words = "";
                 // seperate each of the keywords
                 $keywords = explode(' ', $k);
                 foreach ($keywords as $word) {
-                    $query_string .= " LIKE '%" . $word . "%' OR ";
+                    $query_string .= " LIKE '%" . $word . "%' AND city_name ";
                     $display_words .= $word . " ";
                 }
-                $query_string = substr($query_string, 0, strlen($query_string) - 3);
+                $query_string = substr($query_string, 0, strlen($query_string) - 14);
 
                 // connect to the database
                 // commented out mysqli example from tut to adapt our sqlite3 db
@@ -72,12 +72,30 @@ $site_title = 'Simple Search Engine | HeyTuts.com tutorials';
                 //$query = mysqli_query($conn, $query_string);
 
                 $query = $conn->query($query_string);
+                error_log($query_string);
 
                 // comment out mysqli $result_count to adapt sqlite3 compatible result_count
                 //$result_count = mysqli_num_rows($query);
 
-                // can't seem to convert the # of results to an int?
-                $result_count = (int)$conn->query("SELECT COUNT(*) FROM cities WHERE city_name LIKE '%" . $word . "%'");
+                $result_count_query_string = "SELECT COUNT(*) FROM cities WHERE city_name ";
+                error_log($result_count_query_string);
+
+                $display_words = "";
+                foreach ($keywords as $word) {
+                    $result_count_query_string .= " LIKE '%" . $word . "%' AND city_name ";
+                    $display_words .= $word . " ";
+                }
+                $result_count_query_string = substr($result_count_query_string,
+                                              0,
+                                              strlen($result_count_query_string) - 14);
+                error_log($result_count_query_string);
+
+                // watch these next several lines for the hack-around to count results
+                //$result_count = (int)$conn->query($count_query_string);
+                $result_count_query = $conn->query($result_count_query_string);
+                $result_count_array = $result_count_query->fetchArray();
+                $result_count = $result_count_array[0];
+                error_log("result_count:'" . $result_count . "'");
 
                 // check to see if any results were returned
                 if ($result_count > 0) {
