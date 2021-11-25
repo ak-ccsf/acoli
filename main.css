@@ -1,0 +1,162 @@
+/*
+	main.css - Main stylesheet
+*/
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body{
+	background: #C1E2FF;
+	color: #000;
+}
+a{
+	color: red;
+	text-decoration: none;
+}
+
+#wrapper{
+	width: 650px;
+	margin: auto;
+}
+
+#top_header{
+	padding: 30px;
+}
+
+	#top_header #logo{
+		text-align: center;
+	}
+	#top_header a{
+		color: black;
+	}
+	
+	#top_header #nav{
+		display: block;
+		float: right;
+		margin-top: 10px;
+	}
+	
+		#top_header #nav a{
+			padding: 0px 5px;
+			color: red;
+		}
+		#top_header #nav a:hover{}
+		#top_header #nav a:last-child{border: 0px;}
+
+
+#main{
+
+}
+
+	/* FORMAT FOR THE NAVIGATION AREA */
+	#main #navigation{
+		background-color: #ccc;
+		border-bottom: 1px solid #000;
+	}
+		#main #navigation ul{
+			display: block;
+		}
+			#main #navigation ul li{
+				list-style: none;
+			}
+			#main #navigation ul li a{
+				display: block;
+				padding: 8px 10px;
+				float: left;
+				color: black;
+			}
+			#main #navigation ul li a:hover{
+				background-color: #eee;
+			}
+
+	/* FORMAT FOR THE MAIN CONTENT AREA */
+	#main #content{
+		background-color: #fff;
+		padding: 50px;
+		color: #000;
+
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px; /* future proofing */
+		-khtml-border-radius: 10px; /* for old Konqueror browsers */
+	}
+	
+
+		#main #content h2{
+			margin-bottom: 15px;
+		}
+
+	/* FORMAT THE FOOTER  */
+	#footer{
+		margin: 20px 15px;
+	}
+
+	.search{
+		padding: 10px;
+	}
+		.search td{
+			padding: 3px;
+		}
+
+/* STYLE F\THE FORM ITEMS */
+	input[type=text], input[type=password]{
+		padding: 8px 8px;
+		min-width: 300px;
+	}
+	input[type=submit], input[type=button]{
+		padding: 5px 8px;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		color: #333;
+		cursor: pointer;
+		font-size: 20px;
+	}
+		input[type=submit]:hover, input[type=button]:hover{
+			background-color: #aaa;
+		}
+	textarea{
+		padding: 8px 8px;
+		min-width: 300px;
+	}
+
+/* SETUP SOME GENERIC STYLES */
+	h3{
+		font-size: 20px;
+		margin: 0px;
+	}
+	hr{
+		border: 1px solid #000;
+		margin: 8px 0px;
+	}
+	.required{
+		border: 1px solid red;
+	}
+
+	table td{
+		padding: 5px;
+	}
+
+
+	.right {float: right; }
+	.left	{float: left; }
+	.clear	{clear: both; }
+	.center {margin: auto auto;}
+	.red{color:red;}
+	p{margin-bottom: 8px;}
+
+	.error{
+		background-color: #eee;
+		color: #000;
+		border: 1px solid red;
+		padding: 8px;
+	}
+
+	.success{
+		background-color: #eee;
+		color: #000;
+		border: 1px solid green;
+		padding: 8px;
+	}
