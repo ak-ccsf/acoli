@@ -50,22 +50,33 @@
 						$k = trim($_GET['k']);
 
 						// create a base query and words string
-						$query_string = "SELECT * FROM search_engine WHERE ";
+                        $query_string = "SELECT city_name, region, country_name FROM cities NATURAL JOIN countries WHERE city_name ";
 						$display_words = "";
 
 						// seperate each of the keywords
 						$keywords = explode(' ', $k); 
 						foreach($keywords as $word){
-							$query_string .= " keywords LIKE '%".$word."%' OR ";
+							$query_string .= " LIKE '%".$word."%' OR ";
 							$display_words .= $word." ";
 						}
 						$query_string = substr($query_string, 0, strlen($query_string) - 3);
 
 						// connect to the database
-						$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+                        // commented out mysqli example from tut to adapt our sqlite3 db
+						//$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
-						$query = mysqli_query($conn, $query_string);
-						$result_count = mysqli_num_rows($query);
+                        $conn = new SQLite3('acoli.db');
+
+                        // commented out mysqli_query to adapt our sqlite3 query
+						//$query = mysqli_query($conn, $query_string);
+
+                        $query = $conn->query($query_string);
+
+                        // comment out mysqli $result_count to adapt sqlite3 compatible result_count
+						//$result_count = mysqli_num_rows($query);
+
+                        // can't seem to convert the # of results to an int?
+                        $result_count = (int) $conn->query("SELECT COUNT(*) FROM cities WHERE city_name LIKE '%".$word."%'");
 
 						// check to see if any results were returned
 						if ($result_count > 0){
@@ -77,8 +88,11 @@
 							echo '<table class="search">';
 
 							// display all the search results to the user
-							while ($row = mysqli_fetch_assoc($query)){
-								
+                            // uncoment mysqli fetch to fetch query results in an sqlite3 compatible way
+							//while ($row = mysqli_fetch_assoc($query)){
+							while ($row = $query->fetchArray()){
+
+                                // comment out tutorial's example to rewrite one that works with our db
 								echo '<tr>
 									<td><h3><a href="'.$row['url'].'">'.$row['title'].'</a></h3></td>
 								</tr>
@@ -88,6 +102,11 @@
 								<tr>
 									<td><i>'.$row['url'].'</i></td>
 								</tr>';
+
+                                // unsure how to write this to iterate through the query's results
+                                //echo '<tr>
+                                //  <td><h3>"'.$row['city_name']."</h3></td>
+                                //</tr>';
 							}
 
 							echo '</table>';
