@@ -18,15 +18,19 @@ $site_title = 'aqoli';
 
 <div id="wrapper">
 
-    <div id="top_header">
-        <!--<div id="nav">
-            <a href="<?php echo SITE_ADDR; ?>/new_entry.php">New Entry</a>
-        </div>-->
-
-        <div id="logo">
-            <h1><a href="<?php echo SITE_ADDR; ?>">city search</a></h1>
+    <div class="header">
+        <div class="left">
+          <div class="title">
+          <a href="<?php echo SITE_ADDR; ?>">Best Places</a>
+          </div>
+          <ul class="links">
+            <li><a href="qualityoflife.html">Quality of Life</a></li>
+            <li><a href="citycompare">City Compare</a></li>
+            <li><a href="myplacequiz">My Place Quiz</a></li>
+          </ul>
         </div>
-    </div>
+
+      </div>
 
     <div id="main" class="shadow-box">
         <div id="content">
@@ -135,11 +139,18 @@ $site_title = 'aqoli';
         </div>
     </div>
 
-    <div id="footer">
+    <div class="footer">
+        <ul class="bottom-links">
+          <li>About Us</li>
+          <li>Contact Information</li>
+          <li>Copyright © 2021 by CCSF</li>
+        </ul>
+    </div>
+    <!--<div id="footer">
         <div class="left">
             <a href="https://github.com/ak-ccsf/acoli" target="_blank">site code on github</a>
         <div class="clear"></div>
-    </div>
+    </div>-->
 
 </div>
 
