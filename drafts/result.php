@@ -162,7 +162,7 @@ for($i = 0; $i < 10; $i++) {
     echo "</td>";
     echo "</tr><tr><td colspan='2' style='text-align:center'>";
     echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'>Read More</a> | ";
-    echo "<a href='https://www.google.com/maps/place/" . $row['latitude'] . "," . $row['longitude'] . "' target='_blank'>Go There Now!</a>";
+    echo "<a href='https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" . $row['latitude'] . "," . $row['longitude'] . "' target='_blank'>Go There Now!</a>";
     echo "</td></tr>";
     echo "<tr><td colspan='2'><hr></td></tr>";
 }
