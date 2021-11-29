@@ -70,7 +70,7 @@ $site_title = 'aqoli';
                 // commented out mysqli example to adapt our sqlite3 db
                 //$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
-                $conn = new SQLite3('acoli.db');
+                $conn = new SQLite3('aqoli.db');
 
                 // commented out mysqli_query to adapt our sqlite3 query
                 //$query = mysqli_query($conn, $query_string);
