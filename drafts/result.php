@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3('acoli.db');
+$db = new SQLite3('aqoli.db');
 
 
 // getScore() - builds a string to calculate cities' 'scores' based on user's

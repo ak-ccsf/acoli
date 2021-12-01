@@ -1,7 +1,7 @@
 <?php
 include('quiz.html');
 
-$db = new SQLite3('acoli.db');
+$db = new SQLite3('aqoli.db');
 $countries = $db->query('SELECT country_id, country_name FROM countries ORDER BY country_name');
 $selectCountry = '<select id="selectCountry" onchange="buildRegionList()">
 <option value="">---Select Country---</option>';
