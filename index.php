@@ -3,49 +3,45 @@ define("SITE_ADDR", "http://localhost:8000/");
 //include("./include.php");
 $site_title = 'aqoli';
 ?>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $site_title; ?></title>
-
-    <!-- link to the stylesheets -->
-    <link rel="stylesheet" type="text/css" href="./main.css"></link>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-
-<div id="wrapper">
-
+    <div class='title'> <a href="index.php"><img src="logo.png" alt="Logo Best places"></a></div>
     <div class="header">
         <div class="left">
-          <div class="title">
-          <a href="<?php echo SITE_ADDR; ?>">Best Places</a>
-          </div>
-          <ul class="links">
-            <li><a href="qualityoflife.html">Quality of Life</a></li>
-            <li><a href="citycompare">City Compare</a></li>
-            <li><a href="myplacequiz">My Place Quiz</a></li>
+          <ul class="navbar">
+            <li class="navbar-links"><a href="qualityoflife.html">Quality of Life</a></li>
+            <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
+            <li class="navbar-links"><a href="myplacequiz.php">My Place Quiz</a></li>
           </ul>
         </div>
-
       </div>
 
-    <div id="main" class="shadow-box">
-        <div id="content">
-
-            <center>
-                <form action="" method="GET" name="">
-                    <table>
-                        <tr>
-                            <td><input type="text" name="k" placeholder="search for a city" autocomplete="off"></td>
-                            <td><input type="submit" name="" value="search"></td>
-                        </tr>
-                    </table>
+    <div id="main" class="content">
+        <div class="home-content">
+            <h1>Search Best Places To Live</h1>
+            <div id='form'>
+                <form action='' method='get' class='form'>
+                    <div class='form'>
+                        <input
+                            type='text'
+                            class='input'
+                            placeholder='Enter a City'
+                            required
+                            size='15' maxlength = '100'
+                            name='k'
+                            autocomplete="off"
+                        />
+                    </div>
                 </form>
-            </center>
-
             <?php
 
             // CHECK TO SEE IF THE KEYWORDS WERE PROVIDED
@@ -108,7 +104,7 @@ $site_title = 'aqoli';
                     echo '<br /><div class="right"><b><u>' . $result_count . '</u></b> results found</div>';
                     echo 'Your search for <i>' . $display_words . '</i> <hr /><br />';
 
-                    echo '<table class="search">';
+                    echo '<table class="search-table">';
 
                     // display all the search results to the user
                     // uncoment mysqli fetch to fetch query results in an sqlite3 compatible way

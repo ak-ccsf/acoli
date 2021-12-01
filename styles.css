@@ -1,0 +1,363 @@
+body {
+    margin: 0px;
+
+}
+#main {
+    margin-bottom: 100px;
+}
+.header {
+    display: flex;
+    background: #000832;
+    height: 75px;
+    font-size: x-large;
+    color: #FEFEFE;
+    font-weight: bolder;
+    align-items: center;
+    justify-content: center;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    z-index: 2;
+    
+}
+
+.title {
+    flex-shrink: 0;
+    background: #447bd2;
+    font-weight: bold;
+    background-image: linear-gradient(to right, #447bd2 ,#447bd2 , #000832);
+}
+
+.title img {
+    height: 80px;
+    width: 171px;
+    padding-left: 100px;
+}
+
+
+.title a{
+    padding-left: 22px;
+    width: 180px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #FEFEFE;
+    font-size: 30px;
+    
+}
+/* ul was replaced with botton-links class. Added new class navbar*/ 
+.bottom-links {
+    list-style-type: none;
+    display: flex;
+    margin: 10px;
+    gap: 20px;
+    flex-shrink: 0;
+    border-color: #FEFEFE;
+}
+
+
+.left {
+    display: flex;
+    gap: 16px;
+    
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+
+  .content {
+    position: relative;
+    margin: 100px 250px;
+    gap: 30px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+.main-text {
+    font-size: xx-large;
+
+}
+
+.metrics {
+    display: flex;
+    flex-direction: column;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 150px;
+    gap: 50px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.photo-space {
+    height: 300px;
+    width: 300px;
+    background-color: blueviolet;
+    text-align: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: #000832;
+    color: #FEFEFE;
+    font-size: large;
+    font-weight: bold;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    
+/*fixed position for footer*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+  }
+
+.navbar{
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 75px;
+    align-items: center;
+}
+
+.navbar-links {
+    color: #FEFEFE;
+    position:relative;
+    height: 100%;
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar-links a{
+    padding: 22px;
+    width: 180px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #FEFEFE;
+}
+
+.navbar-links a:hover {
+    border-bottom: solid 4px white;
+    transition: all 0.2s ease-out;
+}
+
+.compare-content{
+    width: 900px;
+}
+
+.home-content{
+    width: 900px;
+}
+  
+.content h1{
+    text-align: left;
+    margin-top: 0;
+    font-size: 40px;
+} 
+
+.compare-content span{
+    font-size: 20px; 
+} 
+
+#form {
+    margin-top: 50px;
+}
+
+form {
+    max-width: 800px;
+    display: contents;
+    font-weight: bold;
+}
+
+#form input {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+label {
+    padding-bottom: 20px;
+    color: #000000;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 60px;
+    padding: 10px;
+}
+
+.required:after { 
+    content:"*";
+    color: #a8233c;
+}
+
+
+form div { 
+    text-align:left;
+}
+
+#buttons{
+    text-align: center;
+}
+
+input[type="submit"]{
+    background: #447bd2;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #FEFEFE;
+    border-color: #447bd2;
+}
+
+#form input:focus { 
+    outline: none !important;
+    border-color: #000000;
+    box-shadow: 0 0 10px #000000;
+}
+
+.compare-table {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.search-table {
+    font-size: 16px;
+    width: 100%;
+    border:none;
+} 
+
+.search-table td {
+    border: none;
+    text-align: left;
+}
+
+
+table {
+    font-size: 16px;
+    /*text-transform: capitalize; capitalize first letters?*/
+    font-weight: bold;
+    width: 100%;
+    border: 1px solid #ccc; 
+    text-align: center;
+}
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+}
+.compare-table tr:first-child td {
+    background-color: #000832;
+    text-transform:uppercase;
+    text-align: center;
+    color: #FEFEFE;
+}
+
+.compare-table td:nth-child(1) {  
+    background: rgb(0, 8, 50, 0.1);
+    text-align: left;
+}
+
+.result-table-img {
+    width: 400px;
+    padding-top: 40px;
+}
+
+
+.result-table {
+    border: none;
+}
+
+.result-table td{
+    border: none;
+}
+
+.wiki-links {
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px dotted #ccc !important;
+}
+
+.result-table-indexes{
+    background-color: #000832;
+    color: #FEFEFE;
+    align-items: center;
+}
+
+/* quiz page*/
+
+input[type=range] {
+    width: 900px;
+    max-width: 90%;
+    margin-left: 0;
+}
+
+/* style datalist */
+input[type=range] + datalist {
+    display: block;
+    margin-top: -4px;
+}
+input[type=range] + datalist option {
+    display: inline-block;
+    width: calc((90% - 12px) / (var(--list-length) - 1));
+    text-align: center;
+}
+input[type=range] + datalist option:first-child {
+    width: calc((90% - 12px) / ((var(--list-length) - 1) * 2) + 6px);
+    text-align: left;
+}
+input[type=range] + datalist option:last-child {
+    width: calc((90% - 12px) / ((var(--list-length) - 1) * 2) + 6px);
+    text-align: right;
+    }
+
+
+input[type="button"]{
+    background: #447bd2;
+    padding: 3px;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #FEFEFE;
+    border-color: #447bd2;
+}
+.quiz-item h2{
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 50px;
+}
+.filters-form {
+    margin-top: 40px;
+}
+
+.filters-form p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.filters-form{
+    padding: 30px 0;
+}
+
+.result-content{
+    width: 900px;
+}
+
+
+
+
+  
+  
