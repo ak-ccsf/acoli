@@ -1,4 +1,4 @@
-# acoli
+# acoli (this branch is now abandoned, see the development branch for up to date commits)
 
 ## Aggregated Cost of Living Indices
 
