@@ -17,7 +17,7 @@ $db = new SQLite3('aqoli.db');
         <div class="left">
             <div class="title"> <a href="index.php">Best Places</a></div>
           <ul class="navbar">
-            <li class="navbar-links"><a href="qualityoflife.html">Quality of Life</a></li>
+            <li class="navbar-links"><a href="qualityoflife.php">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
             <li class="navbar-links"><a href="myplacequiz.php">My Place Quiz</a></li>
           </ul>

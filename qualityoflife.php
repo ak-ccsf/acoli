@@ -27,37 +27,25 @@ $site_title = 'aqoli';
     <div id="main">
         <div class="content">
             <div class='compare-content'>
-                <h1>City compare</h1>
+                <h1>Quality of life</h1>
                 <div>
-                    <span> Compare cities in different categories. The most popular comparisons are quality of life, cost of living, health care, pollution, purchasing power, property price to income, safety, and commute time.
+                    <span>Find information on quality of life, cost of living, purchasing power, property price to income ratios, and more about cities of interest.
                     </span>
                     <div id='form'>
                         <form action='' method='get' class='form'>
                             <div class='form'>
-                                <label for="name" class='required'>Enter 1st Place: </label>
+                                <label for="name" class='required'>Enter the Place: </label>
                                 <input
                                 type='text'
                                 class='input'
                                 placeholder='Enter a City'
                                 required
                                 size='15' maxlength = '100'
-                                name='city1'
-                                />
-                                
-                            </div>
-                            <div class='form'>
-                                <label for="name" class='required'>Enter 2nd Place: </label>
-                                <input
-                                type='text'
-                                class='input'
-                                placeholder='Enter a City'
-                                required
-                                size='15' maxlength = '100'
-                                name='city2'
+                                name='city'
                                 />
                             </div>
                             <div>
-                                <input type="submit" value="Compare Now" class='buttons'/>
+                                <input type="submit" value="Search" class='buttons'/>
                             </div>
                         </form>
                         
@@ -65,11 +53,11 @@ $site_title = 'aqoli';
                         <?php
 
                         // CHECK TO SEE IF THE KEYWORDS WERE PROVIDED
-                        if (isset($_GET['city1']) && $_GET['city1'] != '' && isset($_GET['city2']) && $_GET['city2'] != '') {
+                        if (isset($_GET['city']) && $_GET['city'] != '') {
 
                             // save the keywords from the url
-                            $city1 = trim($_GET['city1']);
-                            $city2 = trim($_GET['city2']);
+                            $city = trim($_GET['city']);
+
 
                             // create a base query and words string
                             $query_string = "SELECT cities.city_name, 
@@ -90,11 +78,10 @@ $site_title = 'aqoli';
                             //add drop-down with cities?
                             
                             
-                            $query_string_city1 = $query_string . " LIKE '%" . $city1 . "%' AND city_name ";
-                            $query_string_city2 = $query_string . " LIKE '%" . $city2 . "%' AND city_name ";
+                            $query_string_city = $query_string . " LIKE '%" . $city . "%' AND city_name ";
                             // $display_words .= $word . " ";
-                            $query_string_city1 = substr($query_string_city1, 0, strlen($query_string_city1) - 14);
-                            $query_string_city2 = substr($query_string_city2, 0, strlen($query_string_city2) - 14);
+                            $query_string_city = substr($query_string_city, 0, strlen($query_string_city) - 14);
+
                             
                             // connect to the database
                             // commented out mysqli example to adapt our sqlite3 db
@@ -104,8 +91,8 @@ $site_title = 'aqoli';
 
                             // commented out mysqli_query to adapt our sqlite3 query
 
-                            $query1 = $conn->query($query_string_city1);
-                            $query2 = $conn->query($query_string_city2);
+                            $query = $conn->query($query_string_city);
+
                             
                             if (true) {
 
@@ -117,23 +104,19 @@ $site_title = 'aqoli';
                                 $row = array();
                                 $row[] = "Indexes";
                                 $rows[] = $row;
-                                $colNums = $query1->numColumns();
+                                $colNums = $query->numColumns();
                                 for($i = 1; $i < $colNums; $i++) {
                                     $row = array();
-                                    $row[] = $query1->columnName($i);
+                                    $row[] = $query->columnName($i);
                                     $rows[] = $row;
                                 }
                                 
-                                while ($row = $query1->fetchArray()) {
+                                while ($row = $query->fetchArray()) {
                                     for($j = 0; $j < $colNums; $j++) {
                                         $rows[$j][] = $row[$j];
                                     }
                                 };
-                                while ($row = $query2->fetchArray()) {
-                                    for($j = 0; $j < $colNums; $j++) {
-                                        $rows[$j][] = $row[$j];
-                                    }
-                                };
+                                
                                 foreach ($rows as $row) {
                                     echo '<tr>';
                                     foreach ($row as $col) {
