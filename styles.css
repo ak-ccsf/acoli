@@ -27,15 +27,20 @@ body {
 }
 
 .title img {
-    height: 80px;
-    width: 171px;
-    padding-left: 100px;
+    height: 30px;
+    width: 30px;
+    padding-right: 10px;
+    
+}
+
+title a:first-child {
+    text-align: left;
+    padding-left: 0;
 }
 
 
 .title a{
-    padding-left: 22px;
-    width: 180px;
+    width: 220px;
     text-align: center;
     display: block;
     text-decoration: none;
@@ -226,8 +231,8 @@ input[type="submit"]{
 
 #form input:focus { 
     outline: none !important;
-    border-color: #000000;
-    box-shadow: 0 0 10px #000000;
+    border-color: #447bd2;
+    box-shadow: 0 0 5px #447bd2;
 }
 
 .compare-table {
@@ -355,6 +360,70 @@ input[type="button"]{
 .result-content{
     width: 900px;
 }
+
+.card_container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    display: block;
+    height: 400px;
+}
+
+.card img{
+    width:100%;
+}
+
+.card:hover {
+    box-shadow: 0 0 15px #447bd2;
+}
+
+.container {
+    padding: 15px;
+    text-align: center;
+}
+
+.container p{
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.column {
+    float: left;
+    width: 31%;
+    margin: 10px;
+}
+
+.card_button {
+    text-align: center;
+    background: #FEFEFE;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #447bd2;
+    border-color: #447bd2;
+}
+
+
+.card_button:hover {
+    text-align: center;
+    background: #447bd2;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px;
+    color: #FEFEFE;
+    border-color: #447bd2;
+}
+
+
+
+
 
 
 

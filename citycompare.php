@@ -15,7 +15,7 @@ $site_title = 'aqoli';
 <body>
     <div class="header">
         <div class="left">
-            <div class="title"> <a href="index.php">Best Places</a></div>
+            <div class="title"> <a href="index.php"><img src="website_logo.jpg" alt="Web site Logo">Best Places</a></div>
           <ul class="navbar">
             <li class="navbar-links"><a href="qualityoflife.html">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
@@ -29,7 +29,7 @@ $site_title = 'aqoli';
             <div class='compare-content'>
                 <h1>City compare</h1>
                 <div>
-                    <span> Compare cities in different categories. The most popular comparisons are population, cost of living, average rent, crime rate, tax rates, air quality, religion, local economy, climate, and weather.
+                    <span> Compare cities in different categories. The most popular comparisons are quality of life, cost of living, health care, pollution, purchasing power, property price to income, safety, and commute time.
                     </span>
                     <div id='form'>
                         <form action='' method='get' class='form'>

@@ -132,7 +132,8 @@ $db = new SQLite3('aqoli.db');
                         document.write(query);
                     }
                 </script>
-                <h1>Find you best place</h1>
+                <h1>Find your best place</h1>
+                <h2>Pick your preferences and discover the cities that best match your needs.</h2>
                 <div>
                     
                     <form name="bestPlaceQuiz" id="bestPlaceQuiz" action="result.php" onsubmit="return true" method="POST">

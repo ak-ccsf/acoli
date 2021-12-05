@@ -14,9 +14,9 @@ $site_title = 'aqoli';
 </head>
 
 <body>
-    <div class='title'> <a href="index.php"><img src="logo.png" alt="Logo Best places"></a></div>
     <div class="header">
         <div class="left">
+             <div class="title"> <a href="index.php"><img src="website_logo.jpg" alt="Web site Logo">Best Places</a></div>
           <ul class="navbar">
             <li class="navbar-links"><a href="qualityoflife.html">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
@@ -133,6 +133,49 @@ $site_title = 'aqoli';
             ?>
 
         </div>
+                    <div>
+                        <div class="card_container">
+                            <div class="cards">
+                                <div class="column">
+                                    <div class="card">
+                                        <div>
+                                            <img alt="Quality of life picture" src="quality.jpeg">
+                                        </div>
+                                        <div class="container">
+                                            <h4>Quality of life</h4>
+                                            <p>Find information on quality of life, purchasing power, property price to income ratios, and more about cities of interest.</p>
+                                            <button class="card_button" onClick="location.href='qualityoflife.html'">Search city by quality</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="card">
+                                        <div>
+                                            <img alt="Quality of life picture" src="copmare.png">
+                                        </div>
+                                        <div class="container">
+                                            <h4>Compare cities</h4>
+                                            <p>Compare cities on quality of life, cost of living, safety and more. Explore where to move based on your personal preferences.</p>
+                                            <button class="card_button" onClick="location.href='citycompare.php'">Compare cities</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="card">
+                                        <div>
+                                            <img alt="Quality of life picture" src="best_place.jpeg">
+                                        </div>
+                                        <div class="container">
+                                            <h4>Where is your best place?</h4>
+                                            <p>You might ask yourself “Where should I live”? This quiz will help you find the top 10 places to live based on your priorities.</p>
+                                            <button class="card_button" onClick="location.href='myplacequiz.php'">Take a quiz</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
     </div>
 
     <div class="footer">
