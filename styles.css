@@ -72,7 +72,6 @@ title a:first-child {
   .content {
     position: relative;
     margin: 100px 250px;
-    gap: 30px;
     flex: 1;
     display: flex;
     align-items: center;
@@ -97,7 +96,6 @@ title a:first-child {
     align-items: center;
     justify-content: center;
     margin: 150px;
-    gap: 50px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -246,6 +244,11 @@ input[type="submit"]{
     border:none;
 } 
 
+.search-table h3{
+    padding-left: 15px;
+    margin: 0;
+}
+
 .search-table td {
     border: none;
     text-align: left;
@@ -257,8 +260,11 @@ table {
     /*text-transform: capitalize; capitalize first letters?*/
     font-weight: bold;
     width: 100%;
+    border-collapse: collapse;
     border: 1px solid #ccc; 
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
 }
 td {
     padding-top: 10px;
@@ -266,15 +272,21 @@ td {
     border: 1px solid #ccc;
 }
 .compare-table tr:first-child td {
-    background-color: #000832;
+    background-color: #447bd2;
     text-transform:uppercase;
     text-align: center;
     color: #FEFEFE;
 }
 
+tr:hover {
+    background-color: rgb(65, 124, 210, 0.5);
+    color: #FEFEFE;
+}
+
 .compare-table td:nth-child(1) {  
-    background: rgb(0, 8, 50, 0.1);
+    /*background: rgb(0, 8, 50, 0.1);*/
     text-align: left;
+    padding-left: 5px;
 }
 
 .result-table-img {
@@ -294,7 +306,7 @@ td {
 .wiki-links {
     text-align: center;
     padding-bottom: 40px;
-    border-bottom: 1px dotted #ccc !important;
+    box-shadow: 0 2px 2px #ccc;
 }
 
 .result-table-indexes{
@@ -355,6 +367,30 @@ input[type="button"]{
 
 .filters-form{
     padding: 30px 0;
+}
+
+.filter-form-lable{
+    display: inline-block;
+    padding-right: 75px;
+    margin-bottom: 40px;
+}
+
+.filter-form-lable select{
+    padding: 3px;
+}
+
+#chosenRegions {
+    padding: 5px;
+    width: 400;
+    height: 80px;
+}
+
+#regionsText {
+    display:none;
+}
+
+.filter-form-button {
+    margin-top: 70px;
 }
 
 .result-content{

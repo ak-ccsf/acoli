@@ -114,12 +114,10 @@ $site_title = 'aqoli';
 
                         // adapted example with one that works with our db
                         echo '<tr>
-                                  <td><h3><a href=https://en.wikipedia.org' . $row['wiki_url'] . '>' . $row['city_name'] . '</a></h3></td>
-                              </tr>
-                              <tr>
+                                  <td>
+                                    <h3><a href=https://en.wikipedia.org' . $row['wiki_url'] . '>' . $row['city_name'] . '</a></h3>
+                                  </td>
                                   <td>' . $row['region'] . '</td>
-                              </tr>
-                              <tr>
                                   <td><i>' . $row['country_name'] . '</i></td>
                               </tr>';
                     }

@@ -229,7 +229,8 @@ $db = new SQLite3('aqoli.db');
                         <div>
                             <div class='filters-form'>
                                 <p>Filter results by location:</p>
-                                <label for="countries">Country:</label>
+                                <div class="filter-form-lable">
+                                    <label for="countries">Country:</label>
                             <?php 
                                 $countries = $db->query('SELECT country_id, country_name FROM countries ORDER BY country_name');
                                 $selectCountry = '<select id="selectCountry" onchange="buildRegionList()">
@@ -249,19 +250,22 @@ $db = new SQLite3('aqoli.db');
                                 echo 'else { country_regions["' . $row['country_name'] . '"] = ["' . $row['region'] . '"];}';
                                 }
                                 echo '</script>';
-                                echo '<label for="regions">Region:</label>
+                                echo '</div>';
+                                echo '<div class="filter-form-lable"><label for="regions">Region:</label>
                                 <select id="selectRegion">
                                     <option value="">---Any Region---</option>
                                 </select>
                                 <input type="button" onclick="addRegion()" value="Add">
-                                </div>
-                                <div class="filters-form">
+                                </div></div>
+                                <div class="filters-form-lable">
                                     <label for="chosenRegions">Selected Regions:</label>
-                                        <select id="chosenRegions" multiple multiple style="width:400px"></select>
+                                        <select id="chosenRegions" multiple>
+                                        </select>
+                                        <textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" readonly">;;</textarea>
                                     <input type="button" onclick="removeRegion()" value="Remove">
                                     <script> buildCountryList(); buildRegionList(); </script>
                                 </div>
-                                <div class="buttons">
+                                <div class="buttons filter-form-button">
                                     <input type="submit" value="Find My Place!">
                                 </div>';
                             ?>
