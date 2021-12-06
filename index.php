@@ -142,7 +142,7 @@ $site_title = 'aqoli';
                                         <div class="container">
                                             <h4>Quality of life</h4>
                                             <p>Find information on quality of life, purchasing power, property price to income ratios, and more about cities of interest.</p>
-                                            <button class="card_button" onClick="location.href='qualityoflife.html'">Search city by quality</button>
+                                            <button class="card_button" onClick="location.href='qualityoflife.php'">Search city by quality</button>
                                         </div>
                                     </div>
                                 </div>
