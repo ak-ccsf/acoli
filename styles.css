@@ -23,7 +23,7 @@ body {
     flex-shrink: 0;
     background: #447bd2;
     font-weight: bold;
-    background-image: linear-gradient(to right, #447bd2 ,#447bd2 , #000832);
+    background-image: linear-gradient(to right, #000832 ,#447bd2 , #000832);
 }
 
 .title img {
@@ -31,11 +31,6 @@ body {
     width: 30px;
     padding-right: 10px;
     
-}
-
-title a:first-child {
-    text-align: left;
-    padding-left: 0;
 }
 
 

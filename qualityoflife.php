@@ -15,7 +15,7 @@ $site_title = 'aqoli';
 <body>
     <div class="header">
         <div class="left">
-            <div class="title"> <a href="index.php"><img src="website_logo.jpg" alt="Web site Logo">Best Places</a></div>
+            <div class="title"> <a href="index.php">Aqoli</a></div>
           <ul class="navbar">
             <li class="navbar-links"><a href="qualityoflife.php">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
