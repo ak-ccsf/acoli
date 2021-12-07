@@ -11,6 +11,47 @@ $site_title = 'aqoli';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $site_title; ?></title>
     <link rel="stylesheet" href="./styles.css">
+  <script>
+
+    // getSuggestions(str) - sends search terms 'str' to
+    //     citySuggestions.php, which returns the top 10 matching cities
+    //     (by # of contributors)
+    function getSuggestions(str) {
+      if (str.length == 0) {
+        return;
+      } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200) {
+           fillSuggestions(this.responseText);
+          }
+        };
+        xmlhttp.open("GET", "citySuggestions.php?q=" + str, true);
+        xmlhttp.send();
+      }
+    }
+
+
+    // fillSuggestions() - adds top search results obtained from
+    //   getSuggestions() to datalist
+    function fillSuggestions(str) {
+      clearSuggestions();
+      str = str.split(';;');
+      for(let i = 0; i < str.length - 1; i++) {
+        var opt = document.createElement('option');
+        var cityData = str[i].split('::');
+        opt.value = cityData[0];
+        opt.innerHTML = cityData[1];
+        document.getElementById('searchSuggestions').appendChild(opt)
+      }
+    }
+
+
+    // clearSuggestions() - removes all suggestions from datalist
+    function clearSuggestions() {
+      document.getElementById('searchSuggestions').innerHTML = '';
+    }
+  </script>
 </head>
 <body>
     <div class="header">
@@ -34,27 +75,30 @@ $site_title = 'aqoli';
                     <div id='form'>
                         <form action='' method='get' class='form'>
                             <div class='form'>
-                                <label for="name" class='required'>Enter 1st Place: </label>
+                                <label for="city1" class='required'>Enter 1st Place: </label>
                                 <input
-                                type='text'
+                                list="searchSuggestions"
                                 class='input'
                                 placeholder='Enter a City'
                                 required
                                 size='15' maxlength = '100'
                                 name='city1'
+                                onkeyup='getSuggestions(this.value)'
                                 />
-                                
+                               <datalist id="searchSuggestions"</datalist> 
                             </div>
                             <div class='form'>
-                                <label for="name" class='required'>Enter 2nd Place: </label>
+                                <label for="city2" class='required'>Enter 2nd Place: </label>
                                 <input
-                                type='text'
+                                list="searchSuggestions"
                                 class='input'
                                 placeholder='Enter a City'
                                 required
                                 size='15' maxlength = '100'
-                                name='city2'
+				name='city2'
+                                onkeyup='getSuggestions(this.value)'
                                 />
+                               <datalist id="searchSuggestions"</datalist> 
                             </div>
                             <div>
                                 <input type="submit" value="Compare Now" class='buttons'/>
@@ -72,7 +116,9 @@ $site_title = 'aqoli';
                             $city2 = trim($_GET['city2']);
 
                             // create a base query and words string
-                            $query_string = "SELECT cities.city_name, 
+			    $query_string = "SELECT
+				CASE WHEN region = '' THEN cities.city_name || ', ' || country_name 
+				ELSE cities.city_name || ', ' || region || ', ' || country_name END, 
                                 quality_of_life.climate_index as 'Climate Index', 
                                 quality_of_life.cost_of_living_index as 'Cost of living index',
                                 quality_of_life.health_care_index as 'Health care index',
@@ -81,20 +127,22 @@ $site_title = 'aqoli';
                                 quality_of_life.quality_of_life_index as 'Quality of life index',
                                 quality_of_life.safety_index as 'Safety index', 
                                 quality_of_life.traffic_commute_time_index as 'Traffic commute time index',
-                                quality_of_life.property_price_to_income_ratio as 'Property price to income ratio'
-                                FROM quality_of_life
-                                JOIN cities on quality_of_life.city_id=cities.city_id
-                                WHERE city_name ";
+				quality_of_life.property_price_to_income_ratio as 'Property price to income ratio',
+                                quality_of_life.max_contributors
+				FROM cities
+                                LEFT JOIN countries ON cities.country_id = countries.country_id
+				LEFT JOIN quality_of_life on quality_of_life.city_id=cities.city_id
+                                WHERE cities.city_id ";
                             
                             
                             //add drop-down with cities?
                             
                             
-                            $query_string_city1 = $query_string . " LIKE '%" . $city1 . "%' AND city_name ";
-                            $query_string_city2 = $query_string . " LIKE '%" . $city2 . "%' AND city_name ";
+			    $query_string_city1 = $query_string . " IS '" . $city1
+				                . "' ORDER BY max_contributors DESC";
+                            $query_string_city2 = $query_string . " IS '" . $city2
+				                . "' ORDER BY max_contributors DESC";
                             // $display_words .= $word . " ";
-                            $query_string_city1 = substr($query_string_city1, 0, strlen($query_string_city1) - 14);
-                            $query_string_city2 = substr($query_string_city2, 0, strlen($query_string_city2) - 14);
                             
                             // connect to the database
                             // commented out mysqli example to adapt our sqlite3 db
@@ -106,8 +154,16 @@ $site_title = 'aqoli';
 
                             $query1 = $conn->query($query_string_city1);
                             $query2 = $conn->query($query_string_city2);
-                            
-                            if (true) {
+
+			    $query1rows = 0;
+			    while($query1->fetchArray())
+				$query1rows++;
+			    $query1->reset();
+			    $query2rows = 0;
+			    while($query2->fetchArray())
+				$query2rows++;
+			    $query2->reset();
+                            if ($query1rows > 0 && $query2rows > 0) {
 
                                 echo '<div class ="compare-table"><table>';
 
@@ -117,7 +173,7 @@ $site_title = 'aqoli';
                                 $row = array();
                                 $row[] = "Indexes";
                                 $rows[] = $row;
-                                $colNums = $query1->numColumns();
+                                $colNums = $query1->numColumns() - 1;
                                 for($i = 1; $i < $colNums; $i++) {
                                     $row = array();
                                     $row[] = $query1->columnName($i);
@@ -144,7 +200,17 @@ $site_title = 'aqoli';
                                 echo '</table></div>';
                                 
                             } else
-                                echo 'No results found. Please search something else.';
+				echo 'No results found for ';
+			        if($query1rows == 0){
+			            echo $city1;
+				    if($query2rows == 0) {
+					echo ' or ';
+				    }
+				}
+				if($query2rows == 0) {
+				    echo $city2;
+				}
+				echo '. Please search something else.';
                         } else
                             echo '';
 
