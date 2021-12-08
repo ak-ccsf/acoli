@@ -199,7 +199,7 @@ $site_title = 'aqoli';
                                 }
                                 echo '</table></div>';
                                 
-                            } else
+                            } else {
 				echo 'No results found for ';
 			        if($query1rows == 0){
 			            echo $city1;
@@ -211,6 +211,7 @@ $site_title = 'aqoli';
 				    echo $city2;
 				}
 				echo '. Please search something else.';
+			    }
                         } else
                             echo '';
 
