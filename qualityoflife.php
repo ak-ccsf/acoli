@@ -11,6 +11,7 @@ $site_title = 'aqoli';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $site_title; ?></title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="citysuggestions.js"></script>
 </head>
 <body>
     <div class="header">
@@ -36,13 +37,15 @@ $site_title = 'aqoli';
                             <div class='form'>
                                 <label for="name" class='required'>Enter the Place: </label>
                                 <input
-                                type='text'
+                                list='searchSuggestions'
                                 class='input'
                                 placeholder='Enter a City'
                                 required
                                 size='15' maxlength = '100'
-                                name='city'
-                                />
+				name='city'
+                                onkeyup='getSuggestions(this.value)'
+				/>
+                                <datalist id="searchSuggestions"</datalist>
                             </div>
                             <div>
                                 <input type="submit" value="Search" class='buttons'/>
@@ -60,7 +63,9 @@ $site_title = 'aqoli';
 
 
                             // create a base query and words string
-                            $query_string = "SELECT cities.city_name, 
+			    $query_string = "SELECT
+				CASE WHEN region = '' THEN cities.city_name || ', ' || country_name
+                                ELSE cities.city_name || ', ' || region || ', ' || country_name END, 
                                 quality_of_life.climate_index as 'Climate Index', 
                                 quality_of_life.cost_of_living_index as 'Cost of living index',
                                 quality_of_life.health_care_index as 'Health care index',
@@ -70,17 +75,15 @@ $site_title = 'aqoli';
                                 quality_of_life.safety_index as 'Safety index', 
                                 quality_of_life.traffic_commute_time_index as 'Traffic commute time index',
                                 quality_of_life.property_price_to_income_ratio as 'Property price to income ratio'
-                                FROM quality_of_life
-                                JOIN cities on quality_of_life.city_id=cities.city_id
-                                WHERE city_name ";
+                                FROM cities LEFT JOIN countries ON cities.country_id = countries.country_id
+                                LEFT JOIN quality_of_life on quality_of_life.city_id=cities.city_id
+                                WHERE cities.city_id ";
                             
                             
                             //add drop-down with cities?
                             
                             
-                            $query_string_city = $query_string . " LIKE '%" . $city . "%' AND city_name ";
-                            // $display_words .= $word . " ";
-                            $query_string_city = substr($query_string_city, 0, strlen($query_string_city) - 14);
+                            $query_string_city = $query_string . " IS '" . $city . "'";
 
                             
                             // connect to the database
@@ -93,9 +96,30 @@ $site_title = 'aqoli';
 
                             $query = $conn->query($query_string_city);
 
-                            
-                            if (true) {
+			    $numRows = 0;
+			    while($query->fetchArray()) {
+				$numRows++;
+			    }
+			    $query->reset();
 
+			    $wikiQuery = "SELECT image_url, wiki_url, latitude, longitude
+				    FROM cities JOIN image_urls ON cities.city_id = image_urls.city_id
+                                    WHERE cities.city_id IS " . $city;
+			    $wikiData = ($conn->query($wikiQuery))->fetchArray();
+
+                            if ($numRows > 0) {
+
+				echo "<table class='result-table'><tr><td colspan='2'>";
+				if($wikiData['image_url'] != '') {
+					echo '<img src="' . $wikiData['image_url']
+						. '" class="result-table-img">';
+				}
+				else {
+				    echo 'No Image Available';
+				}
+
+				echo '</td></tr>';
+				echo '<tr><td>';
                                 echo '<div class ="compare-table"><table>';
 
                                 // display all the search results to the user
@@ -124,10 +148,23 @@ $site_title = 'aqoli';
                                     };
                                     echo '</tr>';
                                 }
-                                echo '</table></div>';
+				echo '</table></div>';
+				echo '</td></tr>';
+				echo "<tr><td colspan='2' class='wiki-links'>";
+				if($wikiData['wiki_url'] != '') {
+                                    echo "<a href='https://en.wikipedia.org"
+					    . $wikiData['wiki_url']
+					    . "' target='_blank'>Read More</a>";
+		                }
+		                if($wikiData['latitude'] != '') {
+				    echo " | <a href='https://www.google.com/maps/@?api=1&map_action=pano&viewpoint="
+				    . $wikiData['latitude'] . "," . $wikiData['longitude']
+				    . "' target='_blank'>Go There Now!</a>";
+				}
+				echo "</td></tr></table>";
                                 
                             } else
-                                echo 'No results found. Please search something else.';
+                                echo 'No results found for ' . $city .'. Please search something else.';
                         } else
                             echo '';
 
