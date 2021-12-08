@@ -51,16 +51,22 @@ $site_title = 'aqoli';
                 $k = trim($_GET['k']);
 
                 // create a base query and words string
-                $query_string = "SELECT city_name, region, country_name, wiki_url FROM cities NATURAL JOIN countries WHERE city_name ";
+		$query_string = "SELECT cities.city_id, city_name, region, country_name,
+			wiki_url, max_contributors
+			FROM cities NATURAL JOIN countries
+                        LEFT JOIN quality_of_life ON cities.city_id = quality_of_life.city_id
+                        WHERE city_name || ' ' || region || ' ' || country_name ";
 
                 $display_words = "";
                 // seperate each of the keywords
                 $keywords = explode(' ', $k);
                 foreach ($keywords as $word) {
-                    $query_string .= " LIKE '%" . $word . "%' AND city_name ";
+	            $query_string .= " LIKE '%" . $word
+		        . "%' AND city_name || ' ' || region || ' ' || country_name ";
                     $display_words .= $word . " ";
                 }
-                $query_string = substr($query_string, 0, strlen($query_string) - 14);
+		$query_string = substr($query_string, 0, strlen($query_string) - 55)
+		    . " ORDER BY max_contributors DESC";
 
                 // connect to the database
                 // commented out mysqli example to adapt our sqlite3 db
@@ -77,17 +83,19 @@ $site_title = 'aqoli';
                 // comment out mysqli $result_count to adapt sqlite3 compatible result_count
                 //$result_count = mysqli_num_rows($query);
 
-                $result_count_query_string = "SELECT COUNT(*) FROM cities WHERE city_name ";
+		$result_count_query_string = "SELECT COUNT(*) FROM cities
+			NATURAL JOIN countries
+                        WHERE city_name || ' ' || region || ' ' || country_name ";
                 error_log($result_count_query_string);
 
                 $display_words = "";
                 foreach ($keywords as $word) {
-                    $result_count_query_string .= " LIKE '%" . $word . "%' AND city_name ";
+                    $result_count_query_string .= " LIKE '%" . $word . "%' AND city_name || ' ' || region || ' ' || country_name ";
                     $display_words .= $word . " ";
                 }
                 $result_count_query_string = substr($result_count_query_string,
                                               0,
-                                              strlen($result_count_query_string) - 14);
+                                              strlen($result_count_query_string) - 55);
                 error_log($result_count_query_string);
 
                 // watch these next several lines for the hack-around to count results
@@ -115,7 +123,7 @@ $site_title = 'aqoli';
                         // adapted example with one that works with our db
                         echo '<tr>
                                   <td>
-                                    <h3><a href=https://en.wikipedia.org' . $row['wiki_url'] . '>' . $row['city_name'] . '</a></h3>
+                                    <h3><a href="./qualityoflife.php?city=' . $row['city_id'] . '">' . $row['city_name'] . '</a></h3>
                                   </td>
                                   <td>' . $row['region'] . '</td>
                                   <td><i>' . $row['country_name'] . '</i></td>
