@@ -16,7 +16,7 @@ body {
     justify-content: center;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     z-index: 2;
-    
+
 }
 
 .title {
@@ -30,7 +30,7 @@ body {
     height: 30px;
     width: 30px;
     padding-right: 10px;
-    
+
 }
 
 
@@ -41,9 +41,9 @@ body {
     text-decoration: none;
     color: #FEFEFE;
     font-size: 30px;
-    
+
 }
-/* ul was replaced with botton-links class. Added new class navbar*/ 
+/* ul was replaced with botton-links class. Added new class navbar*/
 .bottom-links {
     list-style-type: none;
     display: flex;
@@ -57,7 +57,7 @@ body {
 .left {
     display: flex;
     gap: 16px;
-    
+
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -110,14 +110,14 @@ body {
     font-size: large;
     font-weight: bold;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
-    
+
+
 /*fixed position for footer*/
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    
+
   }
 
 .navbar{
@@ -159,16 +159,16 @@ body {
 .home-content{
     width: 900px;
 }
-  
+
 .content h1{
     text-align: left;
     margin-top: 0;
     font-size: 40px;
-} 
+}
 
 .compare-content span{
-    font-size: 20px; 
-} 
+    font-size: 20px;
+}
 
 #form {
     margin-top: 50px;
@@ -198,13 +198,13 @@ label {
     padding: 10px;
 }
 
-.required:after { 
+.required:after {
     content:"*";
     color: #a8233c;
 }
 
 
-form div { 
+form div {
     text-align:left;
 }
 
@@ -213,18 +213,18 @@ form div {
 }
 
 input[type="submit"]{
-    background: #447bd2;
+    background: #2857A4;
     padding: 10px;
     font-weight: bold;
     font-size: 16px;
     border-radius: 4px;
     color: #FEFEFE;
-    border-color: #447bd2;
+    border-color: #2857A4;
 }
 
-#form input:focus { 
+#form input:focus {
     outline: none !important;
-    border-color: #447bd2;
+    border-color: #2857A4;
     box-shadow: 0 0 5px #447bd2;
 }
 
@@ -237,7 +237,7 @@ input[type="submit"]{
     font-size: 16px;
     width: 100%;
     border:none;
-} 
+}
 
 .search-table h3{
     padding-left: 15px;
@@ -260,10 +260,10 @@ table {
     font-weight: bold;
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    
+
 }
 td {
     padding-top: 10px;
@@ -271,18 +271,18 @@ td {
     border: 1px solid #ccc;
 }
 .compare-table tr:first-child td {
-    background-color: #447bd2;
+    background-color: #2857A4;
     text-transform:uppercase;
     text-align: center;
     color: #FEFEFE;
 }
 
 .compare-table tr:hover {
-    background-color: rgb(65, 124, 210, 0.5);
+    background-color: #3A73CF;
     color: #FEFEFE;
 }
 
-.compare-table td:nth-child(1) {  
+.compare-table td:nth-child(1) {
     /*background: rgb(0, 8, 50, 0.1);*/
     text-align: left;
     padding-left: 5px;
@@ -344,14 +344,14 @@ input[type=range] + datalist option:last-child {
 
 
 input[type="button"]{
-    background: #447bd2;
+    background: #2857A4;
     padding: 3px;
     font-size: 12px;
     border-radius: 4px;
     color: #FEFEFE;
-    border-color: #447bd2;
+    border-color: #2857A4;
 }
-.quiz-item h2{
+.quiz-item label{
     font-size: 24px;
     margin-bottom: 5px;
     margin-top: 50px;
@@ -441,28 +441,23 @@ input[type="button"]{
     font-weight: bold;
     font-size: 16px;
     border-radius: 4px;
-    color: #447bd2;
-    border-color: #447bd2;
+    color: #2857A4;
+    border-color: #2857A4;
 }
 
 
 .card_button:hover {
     text-align: center;
-    background: #447bd2;
+    background: #2857A4;
     padding: 10px;
     font-weight: bold;
     font-size: 16px;
     border-radius: 4px;
     color: #FEFEFE;
-    border-color: #447bd2;
+    border-color: #2857A4;
 }
 
 
-
-
-
-
-
-
-  
-  
+.card h2 {
+    font-size: 1em;
+}
