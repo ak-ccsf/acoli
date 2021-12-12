@@ -1,15 +1,15 @@
-
+<!DOCTYPE html>
 <?php
 define("SITE_ADDR", "http://localhost:8000/");
 $db = new SQLite3('aqoli.db');
 ?>
 <html lang="en">
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>aqoli - Quiz Results</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -25,7 +25,7 @@ $db = new SQLite3('aqoli.db');
           </ul>
         </div>
       </div>
-    
+
     <div id="main">
         <div class='content'>
             <div class="result-content">
@@ -74,8 +74,8 @@ $db = new SQLite3('aqoli.db');
                     }
                     return $score;
                 }
-                
-                
+
+
                 // buildSelectClause() - builds and returns a select clause for a SQL query
                 //     based on relative importance of different factors as ranked by user
                 function buildSelectClause() {
@@ -102,8 +102,8 @@ $db = new SQLite3('aqoli.db');
                   $select = "SELECT *, 100.0 * score / (SELECT MAX(score) FROM (SELECT " . getScore() . " AS score FROM quality_of_life)) AS percent_match ";
                   return $select;
                 };
-                
-                
+
+
                 // buildFromClause() - builds and returns a FROM clause for a SQL query to
                 //     include rank tables
                 function buildFromClause() {
@@ -115,8 +115,8 @@ $db = new SQLite3('aqoli.db');
                 	   . " AS score FROM quality_of_life) ";
                     return $from;
                 }
-                
-                
+
+
                 // buildWhereClause() - builds and returns a WHERE clause for a SQL query to
                 //     filter results as specified by user
                 function buildWhereClause() {
@@ -144,8 +144,8 @@ $db = new SQLite3('aqoli.db');
                     $where .= implode(' OR ', $conditions);
                     return $where;
                 }
-                
-                
+
+
 		// put together clauses to form query
                 $query = buildSelectClause()
                     . buildFromClause()
@@ -158,7 +158,7 @@ $db = new SQLite3('aqoli.db');
 
                 echo "<table class='result-table'>";
                 for($i = 0; $i < 10; $i++) {
-                echo "<tr><td colspan='2'>";
+                echo "<tr><td>";
                 $row = $results->fetchArray();
 		if(!$row){
 		    break;
@@ -167,10 +167,11 @@ $db = new SQLite3('aqoli.db');
                 if($row['region'] != '') {
                     $line .= $row['region'] . ', ';
                 }
-                    
+
                 $line .= $row['country_name'] . ':&emsp;' . round($row['percent_match'], 2) . "%</h2>";
 		if($row['image_url'] != '') {
-                    echo "<img src=\"" . $row['image_url'] . "\"  / class='result-table-img'>";
+	            echo "<img src=\"" . $row['image_url'] . "\" class='result-table-img'"
+		        . " alt=\"" . $row['city_name'] . "\">";
 		} else {
 		    echo "<p>No Image Available</p>";
 		}
@@ -200,8 +201,8 @@ $db = new SQLite3('aqoli.db');
                 //echo "<tr><td>Quality of Life:</td><td>" . $row['quality_of_life_index'] . $row['city_name'] . "</td></tr>";
                 echo "</table>";
                 echo "</td></tr>";
-                
-                echo "<tr><td colspan='2' class='wiki-links'>";
+
+                echo "<tr><td class='wiki-links'>";
 		if($row['wiki_url'] != '') {
                   echo "<a href='https://en.wikipedia.org" . $row['wiki_url'] . "' target='_blank'>Read More</a>";
 		}
@@ -215,7 +216,7 @@ $db = new SQLite3('aqoli.db');
             </div>
         </div>
     </div>
-    
+
       <div class="footer">
         <ul class="bottom-links">
           <li>About Us</li>

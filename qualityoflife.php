@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <?php
 define("SITE_ADDR", "http://localhost:8000/");
 //include("./include.php");
-$site_title = 'aqoli';
+$site_title = 'aqoli - Quality of Life';
 ?>
 <html lang="en">
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@ $site_title = 'aqoli';
           </ul>
         </div>
       </div>
-    
+
     <div id="main">
         <div class="content">
             <div class='compare-content'>
@@ -33,9 +34,9 @@ $site_title = 'aqoli';
                     <span>Find information on quality of life, cost of living, purchasing power, property price to income ratios, and more about cities of interest.
                     </span>
                     <div id='form'>
-                        <form action='' method='get' class='form'>
+                        <form method='get' class='form'>
                             <div class='form'>
-                                <label for="name" class='required'>Enter the Place: </label>
+                                <label for="city" class='required'>Enter the Place: </label>
                                 <input
                                 list='searchSuggestions'
                                 class='input'
@@ -43,16 +44,17 @@ $site_title = 'aqoli';
                                 required
                                 size='15' maxlength = '100'
 				name='city'
+                                id='city'
                                 onkeyup='getSuggestions(this.value)'
 				/>
-                                <datalist id="searchSuggestions"</datalist>
+                                <datalist id="searchSuggestions"></datalist>
                             </div>
                             <div>
                                 <input type="submit" value="Search" class='buttons'/>
                             </div>
                         </form>
-                        
-                        
+
+
                         <?php
 
                         // CHECK TO SEE IF THE KEYWORDS WERE PROVIDED
@@ -65,27 +67,27 @@ $site_title = 'aqoli';
                             // create a base query and words string
 			    $query_string = "SELECT
 				CASE WHEN region = '' THEN cities.city_name || ', ' || country_name
-                                ELSE cities.city_name || ', ' || region || ', ' || country_name END, 
-                                quality_of_life.climate_index as 'Climate Index', 
+                                ELSE cities.city_name || ', ' || region || ', ' || country_name END,
+                                quality_of_life.climate_index as 'Climate Index',
                                 quality_of_life.cost_of_living_index as 'Cost of living index',
                                 quality_of_life.health_care_index as 'Health care index',
                                 quality_of_life.pollution_index as 'Pollution index',
-                                quality_of_life.purchasing_power_index as 'Purchasing power index', 
+                                quality_of_life.purchasing_power_index as 'Purchasing power index',
                                 quality_of_life.quality_of_life_index as 'Quality of life index',
-                                quality_of_life.safety_index as 'Safety index', 
+                                quality_of_life.safety_index as 'Safety index',
                                 quality_of_life.traffic_commute_time_index as 'Traffic commute time index',
                                 quality_of_life.property_price_to_income_ratio as 'Property price to income ratio'
                                 FROM cities LEFT JOIN countries ON cities.country_id = countries.country_id
                                 LEFT JOIN quality_of_life on quality_of_life.city_id=cities.city_id
                                 WHERE cities.city_id ";
-                            
-                            
+
+
                             //add drop-down with cities?
-                            
-                            
+
+
                             $query_string_city = $query_string . " IS '" . $city . "'";
 
-                            
+
                             // connect to the database
                             // commented out mysqli example to adapt our sqlite3 db
                             //$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -102,17 +104,18 @@ $site_title = 'aqoli';
 			    }
 			    $query->reset();
 
-			    $wikiQuery = "SELECT image_url, wiki_url, latitude, longitude
+			    $wikiQuery = "SELECT city_name, image_url, wiki_url, latitude, longitude
 				    FROM cities JOIN image_urls ON cities.city_id = image_urls.city_id
                                     WHERE cities.city_id IS " . $city;
 			    $wikiData = ($conn->query($wikiQuery))->fetchArray();
 
                             if ($numRows > 0) {
 
-				echo "<table class='result-table'><tr><td colspan='2'>";
+				echo "<table class='result-table'><tr><td>";
 				if($wikiData['image_url'] != '') {
 					echo '<img src="' . $wikiData['image_url']
-						. '" class="result-table-img">';
+						. '" class="result-table-img" '
+						. ' alt="' . $wikiData['city_name'] . '">';
 				}
 				else {
 				    echo 'No Image Available';
@@ -123,7 +126,7 @@ $site_title = 'aqoli';
                                 echo '<div class ="compare-table"><table>';
 
                                 // display all the search results to the user
-                                
+
                                 $rows = array();
                                 $row = array();
                                 $row[] = "Indexes";
@@ -134,13 +137,13 @@ $site_title = 'aqoli';
                                     $row[] = $query->columnName($i);
                                     $rows[] = $row;
                                 }
-                                
+
                                 while ($row = $query->fetchArray()) {
                                     for($j = 0; $j < $colNums; $j++) {
                                         $rows[$j][] = $row[$j];
                                     }
                                 };
-                                
+
                                 foreach ($rows as $row) {
                                     echo '<tr>';
                                     foreach ($row as $col) {
@@ -150,7 +153,7 @@ $site_title = 'aqoli';
                                 }
 				echo '</table></div>';
 				echo '</td></tr>';
-				echo "<tr><td colspan='2' class='wiki-links'>";
+				echo "<tr><td class='wiki-links'>";
 				if($wikiData['wiki_url'] != '') {
                                     echo "<a href='https://en.wikipedia.org"
 					    . $wikiData['wiki_url']
@@ -162,7 +165,7 @@ $site_title = 'aqoli';
 				    . "' target='_blank'>Go There Now!</a>";
 				}
 				echo "</td></tr></table>";
-                                
+
                             } else
                                 echo 'No results found for ' . $city .'. Please search something else.';
                         } else
@@ -170,13 +173,13 @@ $site_title = 'aqoli';
 
                         ?>
 
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 
       <div class="footer">
         <ul class="bottom-links">

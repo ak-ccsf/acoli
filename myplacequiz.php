@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <?php
 define("SITE_ADDR", "http://localhost:8000/");
 $db = new SQLite3('aqoli.db');
@@ -9,7 +9,7 @@ $db = new SQLite3('aqoli.db');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Places - Quiz</title>
+    <title>aqoli - Quiz</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -23,7 +23,7 @@ $db = new SQLite3('aqoli.db');
           </ul>
         </div>
       </div>
-    
+
     <div id="main">
         <div class="content">
             <div class='quiz-content'>
@@ -82,7 +82,7 @@ $db = new SQLite3('aqoli.db');
                         var opt = document.createElement('option');
                         if(country == "") {
                             return;
-                        } 
+                        }
                         if(region != "") {
                             opt.value = country + "::" + region;
                             opt.innerHTML = region + ", " + country;
@@ -108,11 +108,9 @@ $db = new SQLite3('aqoli.db');
                         var chosen = document.getElementById('chosenRegions');
                         for (let i = 0; i < chosen.length; i++) {
                             if(chosen[i].selected) {
-                                // TODO: account for names that may be substrings of other names
-                                // remove newlines
-                                document.getElementById('regionsText').value = 
+                                document.getElementById('regionsText').value =
                                     document.getElementById('regionsText').value
-                                    .replace(';' + chosen[i].value + ';', ''); 
+                                    .replace(';' + chosen[i].value + ';', '');
                                 chosen[i].remove();
                                 i--;
                             }
@@ -135,12 +133,11 @@ $db = new SQLite3('aqoli.db');
                 <h1>Find your best place</h1>
                 <h2>Pick your preferences and discover the cities that best match your needs.</h2>
                 <div>
-                    
-                    <form name="bestPlaceQuiz" id="bestPlaceQuiz" action="result.php" onsubmit="return true" method="POST">
-                        <div class='quiz-item'>
-                            <div><h2>Purchasing Power:</h2></div>
-                            <input type="range" min="0" max="4" id="purchasing_power_index" name="purchasing_power_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                  <form name="bestPlaceQuiz" id="bestPlaceQuiz" action="result.php" onsubmit="return true" method="POST">
+                      <div class='quiz-item'>
+                          <div><label for='purchasing_power_index'>Purchasing Power:</label></div>
+                            <input type="range" min="0" max="4" id="purchasing_power_index" name="purchasing_power_index" list="my-datalist1"/>
+                            <datalist id="my-datalist1" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -148,10 +145,11 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
                         <div class='quiz-item'>
-                            <div><h2>Safety:</h2></div>
-                            <input type="range" min="0" max="4" id="safety_index" name="safety_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='safety_index'>Safety:</label></div>
+                            <input type="range" min="0" max="4" id="safety_index" name="safety_index" list="my-datalist2"/>
+                            <datalist id="my-datalist2" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -159,21 +157,11 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
                         <div class='quiz-item'>
-                            <div><h2>Health Care:</h2></div>
-                            <input type="range" min="0" max="4" id="health_care_index" name="health_care_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
-                              <option>Not Important</option>
-                              <option></option>
-                              <option>Somewhat Important</option>
-                              <option></option>
-                              <option>Very Important</option>
-                            </datalist>
-                            </div>
-                        <div class='quiz-item'>
-                            <div><h2>Climate:</h2></div>
-                            <input type="range" min="0" max="4" id="climate_index" name="climate_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='health_care_index'>Health Care:</label></div>
+                            <input type="range" min="0" max="4" id="health_care_index" name="health_care_index" list="my-datalist3"/>
+                            <datalist id="my-datalist3" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -181,10 +169,11 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
                         <div class='quiz-item'>
-                            <div><h2>Cost of Living:</h2></div>
-                            <input type="range" min="0" max="4" id="cost_of_living_index" name="cost_of_living_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='climate_index'>Climate:</label></div>
+                            <input type="range" min="0" max="4" id="climate_index" name="climate_index" list="my-datalist4"/>
+                            <datalist id="my-datalist4" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -192,10 +181,23 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
+                        <div class='quiz-item'>
+                            <div><label for='cost_of_living_index'>Cost of Living:</label></div>
+                            <input type="range" min="0" max="4" id="cost_of_living_index" name="cost_of_living_index" list="my-datalist5"/>
+                            <datalist id="my-datalist5" style="--list-length: 5;">
+                              <option>Not Important</option>
+                              <option></option>
+                              <option>Somewhat Important</option>
+                              <option></option>
+                              <option>Very Important</option>
+                            </datalist>
+                        </div>
+                        <br><br>
                         <div>
-                            <div><h2>Property Price to Income Ratio:</h2></div>
-                            <input type="range" min="0" max="4" id="property_price_to_income_ratio" name="property_price_to_income_ratio" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='property_price_to_income_ratio'>Property Price to Income Ratio:</label></div>
+                            <input type="range" min="0" max="4" id="property_price_to_income_ratio" name="property_price_to_income_ratio" list="my-datalist6"/>
+                            <datalist id="my-datalist6" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -203,10 +205,11 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
                         <div class='quiz-item'>
-                            <div><h2>Traffic/Commute Time:</h2></div>
-                            <input type="range" min="0" max="4" id="traffic_commute_time_index" name="traffic_commute_time_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='traffic_commute_time_index'>Traffic/Commute Time:</label></div>
+                            <input type="range" min="0" max="4" id="traffic_commute_time_index" name="traffic_commute_time_index" list="my-datalist7"/>
+                            <datalist id="my-datalist7" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -214,10 +217,11 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
+                        <br><br>
                         <div class='quiz-item'>
-                            <div><h2>Pollution:</h2></div>
-                            <input type="range" min="0" max="4" id="pollution_index" name="pollution_index" list="my-datalist"/>
-                            <datalist id="my-datalist" style="--list-length: 5;">
+                            <div><label for='pollution_index'>Pollution:</label></div>
+                            <input type="range" min="0" max="4" id="pollution_index" name="pollution_index" list="my-datalist8"/>
+                            <datalist id="my-datalist8" style="--list-length: 5;">
                               <option>Not Important</option>
                               <option></option>
                               <option>Somewhat Important</option>
@@ -225,19 +229,19 @@ $db = new SQLite3('aqoli.db');
                               <option>Very Important</option>
                             </datalist>
                         </div>
-                        
+                        <br><br>
                         <div>
                             <div class='filters-form'>
                                 <p>Filter results by location:</p>
                                 <div class="filter-form-lable">
-                                    <label for="countries">Country:</label>
-                            <?php 
+                                    <label for="selectCountry">Country:</label>
+                            <?php
                                 $countries = $db->query('SELECT country_id, country_name FROM countries ORDER BY country_name');
                                 $selectCountry = '<select id="selectCountry" onchange="buildRegionList()">
                                 <option value="">---Select Country---</option>';
                                 while($row = $countries->fetchArray()) {
                                     //echo $row['country_id'] . ':' . $row['country_name'] . '<br>';
-                                    $selectCountry .= "\n<option value=\"" . $row['country_name'] . "\">" . 
+                                    $selectCountry .= "\n<option value=\"" . $row['country_name'] . "\">" .
                                                       $row['country_name'] . "</option>";
                                 }
                                 $selectCountry .= '</select>';
@@ -251,7 +255,7 @@ $db = new SQLite3('aqoli.db');
                                 }
                                 echo '</script>';
                                 echo '</div>';
-                                echo '<div class="filter-form-lable"><label for="regions">Region:</label>
+                                echo '<div class="filter-form-lable"><label for="selectRegion">Region:</label>
                                 <select id="selectRegion">
                                     <option value="">---Any Region---</option>
                                 </select>
@@ -261,7 +265,7 @@ $db = new SQLite3('aqoli.db');
                                     <label for="chosenRegions">Selected Regions:</label>
                                         <select id="chosenRegions" multiple>
                                         </select>
-                                        <textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" readonly">;;</textarea>
+                                        <textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" readonly>;;</textarea>
                                     <input type="button" onclick="removeRegion()" value="Remove">
                                     <script> buildCountryList(); buildRegionList(); </script>
                                 </div>
@@ -269,16 +273,15 @@ $db = new SQLite3('aqoli.db');
                                     <input type="submit" value="Find My Place!">
                                 </div>';
                             ?>
-                            </div> 
                         </div>
                     </form>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
     </div>
-    
+
 
       <div class="footer">
         <ul class="bottom-links">

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 define("SITE_ADDR", "http://localhost:8000/");
 //include("./include.php");
@@ -5,7 +6,7 @@ $site_title = 'aqoli';
 ?>
 <html lang="en">
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@ $site_title = 'aqoli';
         <div class="home-content">
             <h1>Search Best Places To Live</h1>
             <div id='form'>
-                <form action='' method='get' class='form'>
+                <form method='get' class='form'>
                     <div class='form'>
                         <input
                             type='text'
@@ -148,7 +149,7 @@ $site_title = 'aqoli';
                                             <img alt="Quality of life picture" src="quality.jpeg">
                                         </div>
                                         <div class="container">
-                                            <h4>Quality of life</h4>
+                                            <h2>Quality of life</h2>
                                             <p>Find information on quality of life, purchasing power, property price to income ratios, and more about cities of interest.</p>
                                             <button class="card_button" onClick="location.href='qualityoflife.php'">Search city by quality</button>
                                         </div>
@@ -160,7 +161,7 @@ $site_title = 'aqoli';
                                             <img alt="Quality of life picture" src="copmare.png">
                                         </div>
                                         <div class="container">
-                                            <h4>Compare cities</h4>
+                                            <h2>Compare cities</h2>
                                             <p>Compare cities on quality of life, cost of living, safety and more. Explore where to move based on your personal preferences.</p>
                                             <button class="card_button" onClick="location.href='citycompare.php'">Compare cities</button>
                                         </div>
@@ -172,7 +173,7 @@ $site_title = 'aqoli';
                                             <img alt="Quality of life picture" src="best_place.jpeg">
                                         </div>
                                         <div class="container">
-                                            <h4>Where is your best place?</h4>
+                                            <h2>Where is your best place?</h2>
                                             <p>You might ask yourself “Where should I live”? This quiz will help you find the top 10 places to live based on your priorities.</p>
                                             <button class="card_button" onClick="location.href='myplacequiz.php'">Take a quiz</button>
                                         </div>
@@ -181,7 +182,7 @@ $site_title = 'aqoli';
                             </div>
                         </div>
                     </div>
-            
+
     </div>
 
     <div class="footer">
