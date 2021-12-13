@@ -190,15 +190,15 @@ $db = new SQLite3('aqoli.db');
                      "<td class='result-table-indexes'>Property Price</td>" .
                      "<td class='result-table-indexes'>Traffic</td>" .
                      "<td class='result-table-indexes'>Pollution</td></tr>";
-                echo "<tr><td>" . $row['quality_of_life_index'] . "</td>" .
-                     "<td>" . $row['purchasing_power_index'] . "</td>" .
-                     "<td>" . $row['safety_index'] . "</td>" .
-                     "<td>" . $row['health_care_index'] . "</td>" .
-                     "<td>" . $row['climate_index'] . "</td>" .
-                     "<td>" . $row['cost_of_living_index'] . "</td>" .
-                     "<td>" . $row['property_price_to_income_ratio'] . "</td>" .
-                     "<td>" . $row['traffic_commute_time_index'] . "</td>" .
-                     "<td>" . $row['pollution_index'] . "</td></tr>";
+                echo "<tr><td>" . ($row['quality_of_life_index'] == '' ? 'Not Enough Data' : $row['quality_of_life_index']) . "</td>" .
+                     "<td>" . ($row['purchasing_power_index'] == '' ? 'Not Enough Data' : $row['purchasing_power_index']) . "</td>" .
+                     "<td>" . ($row['safety_index'] == '' ? 'Not Enough Data' : $row['safety_index']) . "</td>" .
+                     "<td>" . ($row['health_care_index'] == '' ? 'Not Enough Data' : $row['health_care_index']) . "</td>" .
+                     "<td>" . ($row['climate_index'] == '' ? 'Not Enough Data' : $row['climate_index']) . "</td>" .
+                     "<td>" . ($row['cost_of_living_index'] == '' ? 'Not Enough Data' : $row['cost_of_living_index']) . "</td>" .
+                     "<td>" . ($row['property_price_to_income_ratio'] == '' ? 'Not Enough Data' : $row['property_price_to_income_ratio']) . "</td>" .
+                     "<td>" . ($row['traffic_commute_time_index'] == '' ? 'Not Enough Data' : $row['traffic_commute_time_index']) . "</td>" .
+                     "<td>" . ($row['pollution_index'] == '' ? 'Not Enough Data' : $row['pollution_index']) . "</td></tr>";
                 //echo "<tr><td>Quality of Life:</td><td>" . $row['quality_of_life_index'] . $row['city_name'] . "</td></tr>";
                 echo "</table>";
                 echo "</td></tr>";
