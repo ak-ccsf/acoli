@@ -1,0 +1,2282 @@
+{
+  "id": "bd2a95bd-ce87-4087-90b8-1e9756a2a99d",
+  "version": "2.0",
+  "name": "Aqoli",
+  "url": "http://localhost:8000",
+  "tests": [{
+    "id": "0b9778ee-1b6c-4677-a9f3-6aa397c4aa6e",
+    "name": "Verify that city is shown in the table if enterd valid namein the seach field on the main page",
+    "commands": [{
+      "id": "f2f36f83-1344-4dc8-a4e0-a50a38509f1b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c953b5c5-8277-4a4f-872e-17a2b621fedb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02823498-9977-4901-a910-bb83dc178174",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6ce2e10b-8231-4d44-939c-0187d5dba940",
+      "comment": "",
+      "command": "type",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Minsk"
+    }, {
+      "id": "2355a9eb-ba55-48fe-993e-25c7f7eec6f8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "dd2bdfbd-56d5-466e-8247-fdf6af424ab6",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='form']/table/tbody/tr/td/h3/a",
+      "targets": [],
+      "value": "city_name"
+    }, {
+      "id": "59812225-86b4-406d-ad64-c793216d262e",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${city_name}.match('Minsk*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "0b1bf40c-a933-4f80-a652-277af808233e",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "968b7871-5359-491d-9f20-575874f38280",
+    "name": "Verify that an information message is shown if was entered special characters to the search field on the main page",
+    "commands": [{
+      "id": "ca5df074-85e7-4930-844c-c535e1212bd3",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f5ed33b1-3794-4e13-a502-b596eb0699c0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e0ebb11e-e664-416a-b9af-b3e390080e43",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "67b2904d-609c-4efc-bff5-81d87488ed99",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0fcbea8-a331-4f68-a457-f1405467d12b",
+      "comment": "",
+      "command": "type",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "!@#$%"
+    }, {
+      "id": "1bd513df-f544-4b2e-85ae-713549d458d0",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "c0bcdbeb-ab5d-4560-a81e-affdd4531e67",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=/html/body/div[2]/div[1]/div[1]",
+      "targets": [],
+      "value": "No results found. Please search something else."
+    }]
+  }, {
+    "id": "90e13d0c-ef6d-4d92-bb1f-374c71397c4b",
+    "name": "Verify that an information message is shown if the entered city isn't found",
+    "commands": [{
+      "id": "7063776f-f311-4558-823b-74c365bb46e8",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0cd24f30-61fe-4b92-bca0-b7abc677fa62",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "422bbc86-95ce-4a59-a964-ac8d0e2beaed",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7975b59-6930-41f8-b262-d683eceaf395",
+      "comment": "",
+      "command": "type",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "kjhgfds"
+    }, {
+      "id": "a7d6295f-b704-4d33-8d3e-c1ff807f3e9c",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "afbfcf05-a0a8-4a7d-a186-20ff7a2605f2",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=/html/body/div[2]/div[1]/div[1]",
+      "targets": [],
+      "value": "No results found. Please search something else."
+    }]
+  }, {
+    "id": "0d42335d-0589-498f-bdbb-c244f87c2a68",
+    "name": "Verify that quality of life page is opened after clicking on the city link on the main page",
+    "commands": [{
+      "id": "bd120c50-40d3-4eec-bf43-f282b6a1cbff",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d67c55b8-9ef0-4a0b-abc5-49ef406ed316",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98dd1524-825c-4091-9b76-3cf29bf6eced",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91d4e6d1-93a4-43e4-81d8-209e968b666d",
+      "comment": "",
+      "command": "type",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Berlin"
+    }, {
+      "id": "9c4ee96f-cfa8-4f78-a9f3-a30a63906034",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "b7e775a3-f895-466d-a764-9a8bbde51be1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Berlin",
+      "targets": [
+        ["linkText=Berlin", "linkText"],
+        ["css=h3 > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Berlin')]", "xpath:link"],
+        ["xpath=//div[@id='form']/table/tbody/tr/td/h3/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, './qualityoflife.php?city=1784')]", "xpath:href"],
+        ["xpath=//h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Berlin')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2215384-9023-4a16-81e7-a36f42fdac77",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//div[@id='main']/div/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Quality of life')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5b87869-4a87-491e-901a-bc1819f5ff2e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//h1[contains(text(),'Quality of life')]",
+      "targets": [],
+      "value": "Quality of life"
+    }]
+  }, {
+    "id": "75b15e0a-7172-4cb0-b06a-e35aef8dda5f",
+    "name": "Verify that table with indexes is shown on the quality of life page after clicking on the city link on the main page",
+    "commands": [{
+      "id": "8c441204-d570-4cbf-8bc0-d3c6a6cb216e",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4ac6ca92-d831-4e65-91a7-bb2039da5fae",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "07a99661-6309-420c-a4ad-ff962d3f0c87",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f35edb6d-cc2d-45a2-86d7-91f8312d96e8",
+      "comment": "",
+      "command": "type",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Porto"
+    }, {
+      "id": "c3664692-7499-4adb-8511-596274ba6d51",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "92873ec0-9354-49bd-9f3b-b222210ac947",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Porto",
+      "targets": [
+        ["linkText=Porto", "linkText"],
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Porto')])[2]", "xpath:link"],
+        ["xpath=//div[@id='form']/table/tbody/tr[2]/td/h3/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, './qualityoflife.php?city=4167')]", "xpath:href"],
+        ["xpath=//tr[2]/td/h3/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "11a64c6f-2ffc-4c51-bcc9-f52607852673",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='form']/table/tbody/tr[2]/td/div/table/tbody/tr/td[2]",
+      "targets": [],
+      "value": "city_name"
+    }, {
+      "id": "472f9985-2d63-4866-a949-1205c7051958",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${city_name}.match('PORTO*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "a8717710-b378-40ec-af43-5a2f24b0d580",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "7d3f16f1-3b51-4a5d-a983-12ca6d138a4b",
+    "name": "Verify that the table with indexes is shown on the quality of life page after searching a city",
+    "commands": [{
+      "id": "2d776283-4e8d-460d-a554-24a206a5584c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "837a8ca5-54c3-4257-8150-986644f7aca9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "83e76807-3378-4360-924f-dafb2b18ab05",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Quality of Life",
+      "targets": [
+        ["linkText=Quality of Life", "linkText"],
+        ["css=.navbar-links:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Quality of Life')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'qualityoflife.php')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Quality of Life')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9274283-3886-4bb9-905f-5a570d2836fc",
+      "comment": "",
+      "command": "click",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["name=city", "name"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50bfcce7-3605-415a-bb68-a8570da363b7",
+      "comment": "",
+      "command": "type",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["name=city", "name"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "3897"
+    }, {
+      "id": "2398058d-09d6-48e1-90ad-447df96a2ca5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.buttons",
+      "targets": [
+        ["css=.buttons", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d1f4d52-b373-482b-a637-2e650e3a5789",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='form']/table/tbody/tr[2]/td/div/table/tbody/tr/td[2]",
+      "targets": [],
+      "value": "city_name"
+    }, {
+      "id": "fd6bef2b-016a-4bb1-90a2-531ba4d28b2d",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${city_name}.match('OSLO*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "6377606d-b45b-4111-b883-4ba47a1fe596",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "e0e31ba2-4297-4fe9-aacb-e2ef7404dd9b",
+    "name": "Verify that an information message is shown if the entered city isn't found on the quality of life page",
+    "commands": [{
+      "id": "c556b583-ca05-468f-8138-a8edcd7eea77",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f7ba3403-ead1-447b-baf3-ebd68982cd52",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1613x844",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c957211d-a311-4576-90f0-fd9dae1a2b75",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Quality of Life",
+      "targets": [
+        ["linkText=Quality of Life", "linkText"],
+        ["css=.navbar-links:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Quality of Life')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'qualityoflife.php')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Quality of Life')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "59c3ca4c-f184-42a9-895f-c3f27dbd83c4",
+      "comment": "",
+      "command": "click",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["name=city", "name"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3645bc85-30cb-42e0-82ea-95067d436bac",
+      "comment": "",
+      "command": "type",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["name=city", "name"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "12345678"
+    }, {
+      "id": "e455fb76-3c7f-443f-83cf-b3450ac3b109",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=city",
+      "targets": [
+        ["id=city", "id"],
+        ["name=city", "name"],
+        ["css=#city", "css:finder"],
+        ["xpath=//input[@id='city']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "effb57d8-a8ce-4a84-84ac-d7033d19f5b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=form",
+      "targets": [
+        ["id=form", "id"],
+        ["css=#form", "css:finder"],
+        ["xpath=//div[@id='form']", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f234098a-d06e-44ac-b087-794e87253bf6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.content",
+      "targets": [
+        ["css=.content", "css:finder"],
+        ["xpath=//div[@id='main']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "039444de-2adf-4812-b86a-7a3ef5c6c9ab",
+      "comment": "",
+      "command": "storeText",
+      "target": "id=noResult",
+      "targets": [
+        ["id=form", "id"],
+        ["css=#form", "css:finder"],
+        ["xpath=//div[@id='form']", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div", "xpath:position"]
+      ],
+      "value": "search_result"
+    }, {
+      "id": "695c2085-7c6b-4326-be44-5e08388f2136",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${search_result}.match('No results found*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "2176e59e-4cdb-4709-8dbf-3d368167e726",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "0ef1e9f4-5cd2-4ba3-8757-51b347182837",
+      "comment": "",
+      "command": "click",
+      "target": "id=form",
+      "targets": [
+        ["id=form", "id"],
+        ["css=#form", "css:finder"],
+        ["xpath=//div[@id='form']", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "49d9474e-8bdf-436b-b28c-2f4fe0b1b14e",
+    "name": "Verify that table with indexes is shown on the compare city page after entering valid 2 cities in thesearch field and press enter",
+    "commands": [{
+      "id": "550acece-6ba2-41e3-b784-bf81bac60a29",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90602afe-fc66-4afd-af3b-0713be8d8b46",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1275x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1734d067-dfff-499f-8208-2208aab0afdf",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=City Compare",
+      "targets": [
+        ["linkText=City Compare", "linkText"],
+        ["css=.navbar-links:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'City Compare')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'citycompare.php')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'City Compare')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "50d90161-40e9-4fb5-8316-516ff904f0cf",
+      "comment": "",
+      "command": "click",
+      "target": "id=city1",
+      "targets": [
+        ["id=city1", "id"],
+        ["name=city1", "name"],
+        ["css=#city1", "css:finder"],
+        ["xpath=//input[@id='city1']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9c7fc4d-a9ed-4acb-a919-7aec52c556e9",
+      "comment": "",
+      "command": "type",
+      "target": "id=city1",
+      "targets": [
+        ["id=city1", "id"],
+        ["name=city1", "name"],
+        ["css=#city1", "css:finder"],
+        ["xpath=//input[@id='city1']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "4908"
+    }, {
+      "id": "9fac689d-bb7a-4349-8fca-10a6fc4c00c6",
+      "comment": "",
+      "command": "click",
+      "target": "id=city2",
+      "targets": [
+        ["id=city2", "id"],
+        ["name=city2", "name"],
+        ["css=#city2", "css:finder"],
+        ["xpath=//input[@id='city2']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0c12c16-29b2-4cd3-afb2-5fcd33d6f103",
+      "comment": "",
+      "command": "type",
+      "target": "id=city2",
+      "targets": [
+        ["id=city2", "id"],
+        ["name=city2", "name"],
+        ["css=#city2", "css:finder"],
+        ["xpath=//input[@id='city2']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "1784"
+    }, {
+      "id": "121e0978-c980-4482-aff1-b01f3f1ea677",
+      "comment": "",
+      "command": "click",
+      "target": "css=.buttons",
+      "targets": [
+        ["css=.buttons", "css:finder"],
+        ["xpath=//input[@value='Compare Now']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9231ac92-bf14-4a65-a645-e3f14a9b0715",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='form']/div/table/tbody/tr/td[2]",
+      "targets": [],
+      "value": "city_name1"
+    }, {
+      "id": "53b0bb87-be9a-482d-b7ce-45a8f4d64f39",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${city_name1}.match('BERN*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "fcdc8d77-fb03-488d-83a6-2792684cfdc4",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "7b9d1d61-f2e0-46ca-bf4e-8f65fc333ae5",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='form']/div/table/tbody/tr/td[3]",
+      "targets": [],
+      "value": "city_name2"
+    }, {
+      "id": "463f735a-5345-4ad4-bf88-a77182fea0aa",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${city_name2}.match('BERLIN*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "7b464fca-979f-44b6-a81e-311ea6228ddb",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "a8947e3a-1887-451d-99c1-2688a5991b47",
+    "name": "Verify that table with cities isn't shown after pressing enter with no value in the field",
+    "commands": [{
+      "id": "686a3d19-17a4-4e1a-a592-b8dc59814382",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "35daec1f-4081-4290-b1f6-fe31a914ee3f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1275x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4347709-140d-4411-921d-916a712b8c21",
+      "comment": "",
+      "command": "click",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d765fd6b-cb7a-4c4d-9527-63a8c813a8d4",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=k",
+      "targets": [
+        ["name=k", "name"],
+        ["css=.input", "css:finder"],
+        ["xpath=//input[@name='k']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "17a41d81-2db5-4de7-88e4-5fe9978c9f17",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "xpath=//div[@id='form']/div",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dd4e29a3-657b-4a7d-82fe-a3598d8928ce",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "xpath=//div[@id='form']/table/tbody/tr/td/h3/a",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "163d45a6-61f0-4226-9f84-da668cfa50a6",
+    "name": "Verify that result page is shown after clicking on the \"Find My Place!\" button",
+    "commands": [{
+      "id": "9f53ecb9-cd82-4c13-a7a7-0c2466671ba2",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b142a723-dce9-4d85-9a6e-16db5d8697c0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1514x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "22f1bd01-2b15-4c9d-bde0-44c4437ab62d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My Place Quiz",
+      "targets": [
+        ["linkText=My Place Quiz", "linkText"],
+        ["css=.navbar-links:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My Place Quiz')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'myplacequiz.php')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Place Quiz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5cdaf1dc-3de4-42aa-8872-57b2b6db16a1",
+      "comment": "",
+      "command": "type",
+      "target": "id=purchasing_power_index",
+      "targets": [
+        ["id=purchasing_power_index", "id"],
+        ["name=purchasing_power_index", "name"],
+        ["css=#purchasing_power_index", "css:finder"],
+        ["xpath=//input[@id='purchasing_power_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "8fbf57e8-1296-441b-9ed2-af453000025a",
+      "comment": "",
+      "command": "click",
+      "target": "id=purchasing_power_index",
+      "targets": [
+        ["id=purchasing_power_index", "id"],
+        ["name=purchasing_power_index", "name"],
+        ["css=#purchasing_power_index", "css:finder"],
+        ["xpath=//input[@id='purchasing_power_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e50c6a8d-3a06-4103-8f79-465ac52ca5e5",
+      "comment": "",
+      "command": "type",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "f4493614-102f-4f49-95c4-470087f6ffb9",
+      "comment": "",
+      "command": "click",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3093614-56d6-4aaa-8381-199bb5620710",
+      "comment": "",
+      "command": "type",
+      "target": "id=health_care_index",
+      "targets": [
+        ["id=health_care_index", "id"],
+        ["name=health_care_index", "name"],
+        ["css=#health_care_index", "css:finder"],
+        ["xpath=//input[@id='health_care_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "b9aa0568-ac47-41f5-9d2d-eacec8a166a5",
+      "comment": "",
+      "command": "click",
+      "target": "id=health_care_index",
+      "targets": [
+        ["id=health_care_index", "id"],
+        ["name=health_care_index", "name"],
+        ["css=#health_care_index", "css:finder"],
+        ["xpath=//input[@id='health_care_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "953fb097-d982-44ec-9f8e-bf96b6efe34f",
+      "comment": "",
+      "command": "type",
+      "target": "id=climate_index",
+      "targets": [
+        ["id=climate_index", "id"],
+        ["name=climate_index", "name"],
+        ["css=#climate_index", "css:finder"],
+        ["xpath=//input[@id='climate_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "f760f5fc-710f-4892-89e0-9c1983e0e9af",
+      "comment": "",
+      "command": "click",
+      "target": "id=climate_index",
+      "targets": [
+        ["id=climate_index", "id"],
+        ["name=climate_index", "name"],
+        ["css=#climate_index", "css:finder"],
+        ["xpath=//input[@id='climate_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "438e7f5f-a8ab-418d-8b7e-98ebf75291e4",
+      "comment": "",
+      "command": "type",
+      "target": "id=cost_of_living_index",
+      "targets": [
+        ["id=cost_of_living_index", "id"],
+        ["name=cost_of_living_index", "name"],
+        ["css=#cost_of_living_index", "css:finder"],
+        ["xpath=//input[@id='cost_of_living_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "b9b6dbab-e14e-467d-bb68-5b835df9b48b",
+      "comment": "",
+      "command": "click",
+      "target": "id=cost_of_living_index",
+      "targets": [
+        ["id=cost_of_living_index", "id"],
+        ["name=cost_of_living_index", "name"],
+        ["css=#cost_of_living_index", "css:finder"],
+        ["xpath=//input[@id='cost_of_living_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac35d6fe-0073-4113-ac85-f1230750b693",
+      "comment": "",
+      "command": "type",
+      "target": "id=property_price_to_income_ratio",
+      "targets": [
+        ["id=property_price_to_income_ratio", "id"],
+        ["name=property_price_to_income_ratio", "name"],
+        ["css=#property_price_to_income_ratio", "css:finder"],
+        ["xpath=//input[@id='property_price_to_income_ratio']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "f6ed1aab-9c4e-4ca4-aaf1-b6f9000b8ed8",
+      "comment": "",
+      "command": "click",
+      "target": "id=property_price_to_income_ratio",
+      "targets": [
+        ["id=property_price_to_income_ratio", "id"],
+        ["name=property_price_to_income_ratio", "name"],
+        ["css=#property_price_to_income_ratio", "css:finder"],
+        ["xpath=//input[@id='property_price_to_income_ratio']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb1bf14d-213e-4178-a2b2-2d37ad38c9b4",
+      "comment": "",
+      "command": "type",
+      "target": "id=traffic_commute_time_index",
+      "targets": [
+        ["id=traffic_commute_time_index", "id"],
+        ["name=traffic_commute_time_index", "name"],
+        ["css=#traffic_commute_time_index", "css:finder"],
+        ["xpath=//input[@id='traffic_commute_time_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "eb34a0e5-035a-48e7-b664-3787017370dd",
+      "comment": "",
+      "command": "click",
+      "target": "id=traffic_commute_time_index",
+      "targets": [
+        ["id=traffic_commute_time_index", "id"],
+        ["name=traffic_commute_time_index", "name"],
+        ["css=#traffic_commute_time_index", "css:finder"],
+        ["xpath=//input[@id='traffic_commute_time_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e3c5728-a80a-4cd9-85f9-9f841e5f348c",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectCountry",
+      "targets": [
+        ["id=selectCountry", "id"],
+        ["css=#selectCountry", "css:finder"],
+        ["xpath=//select[@id='selectCountry']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae3c9fae-f161-4f61-a7cd-f104e150ecd3",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectCountry",
+      "targets": [],
+      "value": "label=United States"
+    }, {
+      "id": "25fadd18-35f7-412a-a047-9f6de9d2fd1d",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(3)",
+      "targets": [
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='Add']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18222684-3c00-4bca-a75f-2a47f5aa46c1",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Find My Place!']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[9]/div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5b40543-6cd3-4707-895f-774a1d474daf",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//div[@id='main']/div/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Results - Your Top Cities')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0af6791-72c1-4336-bf0d-36a8ad88313c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//div[@id='main']/div/div/h1",
+      "targets": [],
+      "value": "Results - Your Top Cities"
+    }]
+  }, {
+    "id": "d6a27d63-f65e-4bbd-a81f-63417563d86c",
+    "name": "Verify that the table with 10 cities is shown on the result page after searching based on the quiz",
+    "commands": [{
+      "id": "87893a28-cf9d-476e-aea7-eebf89eb59c6",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0a71379d-4286-4a2c-9f15-19882c3c0b8f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1514x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ea6abef4-1898-4b7e-a838-0260e4e34411",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My Place Quiz",
+      "targets": [
+        ["linkText=My Place Quiz", "linkText"],
+        ["css=.navbar-links:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My Place Quiz')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'myplacequiz.php')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Place Quiz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c933ccdf-dc02-4022-8789-ca07676c1686",
+      "comment": "",
+      "command": "type",
+      "target": "id=purchasing_power_index",
+      "targets": [
+        ["id=purchasing_power_index", "id"],
+        ["name=purchasing_power_index", "name"],
+        ["css=#purchasing_power_index", "css:finder"],
+        ["xpath=//input[@id='purchasing_power_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "d065bbc4-075a-4d33-b665-48bf8891b0a0",
+      "comment": "",
+      "command": "click",
+      "target": "id=purchasing_power_index",
+      "targets": [
+        ["id=purchasing_power_index", "id"],
+        ["name=purchasing_power_index", "name"],
+        ["css=#purchasing_power_index", "css:finder"],
+        ["xpath=//input[@id='purchasing_power_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d8e2c2e-4e1c-45bf-a304-f13211c94d75",
+      "comment": "",
+      "command": "type",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "f37aa7b4-0ff6-4620-a388-2a1c7faf7926",
+      "comment": "",
+      "command": "click",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c0aa77b-fb03-4fdb-95b0-1e91126ac6df",
+      "comment": "",
+      "command": "type",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "426baafb-544f-43c3-850e-4ecc131c4906",
+      "comment": "",
+      "command": "click",
+      "target": "id=safety_index",
+      "targets": [
+        ["id=safety_index", "id"],
+        ["name=safety_index", "name"],
+        ["css=#safety_index", "css:finder"],
+        ["xpath=//input[@id='safety_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28b85be0-4bbd-437a-8856-402249eb3ca1",
+      "comment": "",
+      "command": "type",
+      "target": "id=health_care_index",
+      "targets": [
+        ["id=health_care_index", "id"],
+        ["name=health_care_index", "name"],
+        ["css=#health_care_index", "css:finder"],
+        ["xpath=//input[@id='health_care_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "62f41b60-2b42-48f6-8f63-7fca0475af72",
+      "comment": "",
+      "command": "click",
+      "target": "id=health_care_index",
+      "targets": [
+        ["id=health_care_index", "id"],
+        ["name=health_care_index", "name"],
+        ["css=#health_care_index", "css:finder"],
+        ["xpath=//input[@id='health_care_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e42bd4b-f756-48ce-81f2-4ad46c20de92",
+      "comment": "",
+      "command": "type",
+      "target": "id=climate_index",
+      "targets": [
+        ["id=climate_index", "id"],
+        ["name=climate_index", "name"],
+        ["css=#climate_index", "css:finder"],
+        ["xpath=//input[@id='climate_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "5eb23fa6-e92b-41a7-93e6-190dbf917338",
+      "comment": "",
+      "command": "click",
+      "target": "id=climate_index",
+      "targets": [
+        ["id=climate_index", "id"],
+        ["name=climate_index", "name"],
+        ["css=#climate_index", "css:finder"],
+        ["xpath=//input[@id='climate_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a77ac87-cd0c-4042-b5ce-2ee091e9e063",
+      "comment": "",
+      "command": "type",
+      "target": "id=cost_of_living_index",
+      "targets": [
+        ["id=cost_of_living_index", "id"],
+        ["name=cost_of_living_index", "name"],
+        ["css=#cost_of_living_index", "css:finder"],
+        ["xpath=//input[@id='cost_of_living_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "61951cbd-7e65-472b-8c6d-a63eb87d0fb7",
+      "comment": "",
+      "command": "click",
+      "target": "id=cost_of_living_index",
+      "targets": [
+        ["id=cost_of_living_index", "id"],
+        ["name=cost_of_living_index", "name"],
+        ["css=#cost_of_living_index", "css:finder"],
+        ["xpath=//input[@id='cost_of_living_index']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5cdd3dac-aac5-4ce4-82a1-750d3c3854f6",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2cc4bd3-0dda-44b4-a217-ac9c9f60b765",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='main']/div/div/table/tbody/tr/td/h2",
+      "targets": [],
+      "value": "first_city_in_column"
+    }, {
+      "id": "73a02c59-4e46-453b-b122-43610cd49ec6",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${first_city_in_column}.match('1.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "5fc6ba24-6e92-445e-b3ef-bd4962738494",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "d1f7c378-5dc5-4353-9a23-4b93e3591a7d",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[4]/td/h2",
+      "targets": [],
+      "value": "second_city_in_column"
+    }, {
+      "id": "f8d4ebc4-bc82-4367-a12d-8440d649751f",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${second_city_in_column}.match('2.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "c7f4814e-8bbb-43f0-b874-594e40ced46c",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "ea7d2a3b-ec21-4553-8772-b636bed702b4",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[7]/td/h2",
+      "targets": [],
+      "value": "third_city_in_column"
+    }, {
+      "id": "e1a2f40b-fcf0-4395-b512-ebd4f2198029",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${third_city_in_column}.match('3.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "e5b3b8c8-9a69-4326-a2bb-5ef3247405b1",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "5d53b64a-8f0b-4d12-a3ef-ea686696846c",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[10]/td/h2",
+      "targets": [],
+      "value": "fourth_city_in_column"
+    }, {
+      "id": "2e81380d-6495-4147-afc1-fe17a537985a",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fourth_city_in_column}.match('4.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "7cf95415-5bc5-47f5-9c1c-6fc7f6f8b08e",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "c232cea6-9780-4835-9bf9-7168b12facb5",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[13]/td/h2",
+      "targets": [],
+      "value": "fifth_city_in_column"
+    }, {
+      "id": "d68f0e1d-99f8-46c7-ae3d-59d608680a28",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fifth_city_in_column}.match('5.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "237caa8a-d40f-443d-9916-efff1a30915b",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "38409bb2-bfe1-430d-800b-067ae080526e",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[16]/td/h2",
+      "targets": [],
+      "value": "sixth_city_in_column"
+    }, {
+      "id": "293d5b9a-80b6-4078-8eaf-640ba12be6eb",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${sixth_city_in_column}.match('6.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "aeafadf4-30f1-4979-9ded-42141c849fc7",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "352674c7-d7c3-4a9b-a11b-0502c2990ae5",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[19]/td/h2",
+      "targets": [],
+      "value": "seventh_city_in_column"
+    }, {
+      "id": "8b6ce58b-eed1-4679-9432-67886f63971e",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${seventh_city_in_column}.match('7.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "b348cdf4-6725-4621-8199-5de7f56e96d4",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "f1f8d2d1-adcd-463c-825a-93d7d7fa5ccd",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[22]/td/h2",
+      "targets": [],
+      "value": "eighth_city_in_column"
+    }, {
+      "id": "89d8896b-900b-4c23-9aca-9c2c1824ed9c",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${eighth_city_in_column}.match('8.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "5bda6ba8-899a-4e56-b5fb-f6382944369d",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "b2957d16-c431-4ea7-867b-85da00ba5217",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[25]/td/h2",
+      "targets": [],
+      "value": "ninth_city_in_column"
+    }, {
+      "id": "0411a0ee-500e-41cc-96d9-0971ab1ad4ee",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ninth_city_in_column}.match('9.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "aa41fdf5-b158-4cdf-9f94-10cfe280ac3e",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "a3e4b929-dddf-44ef-8ebe-0c1d1624d6ab",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[28]/td/h2",
+      "targets": [],
+      "value": "ten_row_in_column"
+    }, {
+      "id": "e73dc22a-29cf-4fa6-a08e-afe1987086bd",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ten_row_in_column}.match('10.*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "d3670b75-543e-4211-b9ba-a4136bf5abe5",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "a1007aa8-4954-4af3-b803-ddc9df12b0cf",
+    "name": "Verify that user is redirected to the quality of life page after clicking on the \"Search city by quality\" button in the Quality of life card",
+    "commands": [{
+      "id": "6dc5e6c2-5acf-4814-bcd8-1db7c7afe4fa",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ba76384-04b7-4c25-83a5-0f33d2102079",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1275x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e46d1ed7-505e-45d7-ae38-728029351881",
+      "comment": "",
+      "command": "click",
+      "target": "css=.column:nth-child(1) .card_button",
+      "targets": [
+        ["css=.column:nth-child(1) .card_button", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href='qualityoflife.php'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div[2]/div/div/div/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search city by quality')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a87139f1-8f05-401e-be85-09080d483182",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=h1",
+      "targets": [],
+      "value": "Quality of life"
+    }]
+  }, {
+    "id": "7e4c8600-f3a4-4c22-82cb-7d5d9ed1d287",
+    "name": "Verify that user is redirected to the city compare page after clicking on the \"Compare cities\" button in the Compare cities card",
+    "commands": [{
+      "id": "b8d4545d-ba68-4a27-bdf4-577148c55202",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef1a7ea2-60a8-4810-bfca-e36d59fc2a48",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1275x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b95ade83-3162-4ad7-9fa3-aed2f42262a7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.column:nth-child(2) .card_button",
+      "targets": [
+        ["css=.column:nth-child(2) .card_button", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href='citycompare.php'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div[2]/div/div/div[2]/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Compare cities')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c791c24-4f09-4066-b92d-61599b434434",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=h1",
+      "targets": [],
+      "value": "City compare"
+    }]
+  }, {
+    "id": "9ec702cd-2f33-4dfb-b3f8-6c947b94f538",
+    "name": "Verify that user is redirected to the my place quiz page after clicking on the \"Take a quiz\" button in the Quiz card",
+    "commands": [{
+      "id": "f7d4425c-4e6f-46aa-b1bc-a6233f03462a",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "885c3b0e-fbcb-4c5d-8091-714d78505fce",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1275x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e9418f48-beab-4b59-9671-56feb630f411",
+      "comment": "",
+      "command": "click",
+      "target": "css=.column:nth-child(3) .card_button",
+      "targets": [
+        ["css=.column:nth-child(3) .card_button", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href='myplacequiz.php'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='main']/div/div[2]/div/div/div[3]/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Take a quiz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2ce1863-c598-4fd7-959b-b48f5346ad46",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=h1",
+      "targets": [],
+      "value": "Find your best place"
+    }]
+  }, {
+    "id": "5e2247a3-5c77-4732-8fe9-6cb248c667bf",
+    "name": "Verify that the result table contains only applied region filter on the my place quiz page",
+    "commands": [{
+      "id": "ecf5907c-3e5e-4350-952d-4a6ab49f8008",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7762b460-c3a7-448c-9b7e-fdb117065b68",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1514x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87295283-91ca-4eae-be71-aecfa1697c61",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My Place Quiz",
+      "targets": [
+        ["linkText=My Place Quiz", "linkText"],
+        ["css=.navbar-links:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My Place Quiz')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'myplacequiz.php')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Place Quiz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4c2c179-3318-49ec-ae04-f9557face496",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectCountry",
+      "targets": [
+        ["id=selectCountry", "id"],
+        ["css=#selectCountry", "css:finder"],
+        ["xpath=//select[@id='selectCountry']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ba6b1c6-1018-43e0-86bd-da74cb25a62b",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectCountry",
+      "targets": [],
+      "value": "label=United States"
+    }, {
+      "id": "aef9053e-7b24-4b4e-b3e7-9b34064ccf04",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectRegion",
+      "targets": [
+        ["id=selectCountry", "id"],
+        ["css=#selectCountry", "css:finder"],
+        ["xpath=//select[@id='selectCountry']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78ad5f8a-4622-4627-9bfe-755345501a12",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectRegion",
+      "targets": [],
+      "value": "label=CA"
+    }, {
+      "id": "ecb34d89-2ac9-4153-928b-afe7ae610f5a",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@value='Add']",
+      "targets": [
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='Add']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a91666a8-504c-46f0-b5ec-2d2402a6079c",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4af1011f-3c2d-4d18-9b00-1e3a35e1cad1",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='main']/div/div/table/tbody/tr/td/h2",
+      "targets": [],
+      "value": "first_city_in_column"
+    }, {
+      "id": "9573cfe4-948a-48ef-9c6e-baa563d5dd7c",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${first_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "c68ccbf8-5e93-4307-84a7-b29ed556f3a5",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "195878e6-854f-4ffb-afac-80bb2003749a",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[4]/td/h2",
+      "targets": [],
+      "value": "second_city_in_column"
+    }, {
+      "id": "ca349d28-654b-43c4-bf78-91da96dc983e",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${second_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "6580856f-4f8f-4287-8452-05ace4021ead",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "f7dde38e-61fe-48ee-a68b-d3e459c28a0e",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[7]/td/h2",
+      "targets": [],
+      "value": "third_city_in_column"
+    }, {
+      "id": "470752ba-8683-4478-bb14-9c0899f5f6af",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${third_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "6f010c0a-bbaa-40b5-9e50-4f9d061d46ed",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "c08e284f-b5b9-48b8-9a0e-c94d0fce8fde",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[10]/td/h2",
+      "targets": [],
+      "value": "fourth_city_in_column"
+    }, {
+      "id": "b6dfe6f3-4822-4eef-9067-48c51f2997ab",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fourth_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "ead9cf20-f2c6-420a-9925-c686af3700c5",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "30f5ec43-4fce-4c92-8cad-4cfd7466c766",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[13]/td/h2",
+      "targets": [],
+      "value": "fifth_city_in_column"
+    }, {
+      "id": "29bf2117-64ca-4c2f-b3eb-e56b95d7a5bb",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fifth_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "be4775f5-4b51-418a-bb51-f105a1ee7bfc",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "54130505-1679-4232-ab8b-02cf41af7552",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[16]/td/h2",
+      "targets": [],
+      "value": "sixth_city_in_column"
+    }, {
+      "id": "1468f969-92f3-456d-b92b-007b4584e29b",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${sixth_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "1b3e360b-80d0-46ef-89fd-ba051ec545d6",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "f938e89b-bc59-43c7-991b-eb6f228cc9cb",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[19]/td/h2",
+      "targets": [],
+      "value": "seventh_city_in_column"
+    }, {
+      "id": "1031c7ae-a6b9-4967-940d-c2b5334eafe8",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${seventh_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "bfc19c57-e51f-4c35-bbda-73df0de07e39",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "3ef8312d-dfd9-4056-b07f-e89dd842600c",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[22]/td/h2",
+      "targets": [],
+      "value": "eighth_city_in_column"
+    }, {
+      "id": "7d9de6a1-4677-48fa-a9ab-4e8539dbc29c",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${eighth_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "16b6860e-620d-451e-897d-ae81469f767a",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "014575f0-17bb-4bc1-aa5e-de1e99f23bb3",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[25]/td/h2",
+      "targets": [],
+      "value": "ninth_city_in_column"
+    }, {
+      "id": "66c10651-51c0-49c5-a1c2-b05dcfb0b115",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ninth_city_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "a83271cf-78b4-4800-a31a-f1ce3a0995ac",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "99fa1b8d-5c55-42e0-be6e-10a38ad31881",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[28]/td/h2",
+      "targets": [],
+      "value": "ten_row_in_column"
+    }, {
+      "id": "ca32028b-0de7-43b5-bb57-7e6a59369e7e",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ten_row_in_column}.match('CA, United States*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "5fc57911-4992-4fdd-a037-62094e9708c1",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }, {
+    "id": "81e8f1ad-83b9-4630-92da-dbb6ea24b6ec",
+    "name": "Verify that the result table contains only applied country filters on the my place quiz page",
+    "commands": [{
+      "id": "d888859d-4855-482d-8e5a-122b43fa5bc7",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a479e869-cd7f-41bd-a20e-7f36f4d7a1a8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1514x975",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "42909c29-799a-42bc-9830-0b279b983738",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My Place Quiz",
+      "targets": [
+        ["linkText=My Place Quiz", "linkText"],
+        ["css=.navbar-links:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My Place Quiz')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'myplacequiz.php')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My Place Quiz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f29882d5-d945-41df-a4c4-2d840775b184",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectCountry",
+      "targets": [
+        ["id=selectCountry", "id"],
+        ["css=#selectCountry", "css:finder"],
+        ["xpath=//select[@id='selectCountry']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e20dba67-ac67-4ddd-bc01-cc539b9d9ea3",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectCountry",
+      "targets": [],
+      "value": "label=Canada"
+    }, {
+      "id": "34207f3f-5782-4d62-88ba-b318ad5595f6",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@value='Add']",
+      "targets": [
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='Add']", "xpath:attributes"],
+        ["xpath=//form[@id='bestPlaceQuiz']/div[9]/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b05b384e-df28-407f-b852-e94a195de678",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(1)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f916ad04-876d-43a4-8ac6-d0a998135b51",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//div[@id='main']/div/div/table/tbody/tr/td/h2",
+      "targets": [],
+      "value": "first_city_in_column"
+    }, {
+      "id": "b6473dcb-99cb-4a52-9bf3-86523b54cd60",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${first_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "1eb2660b-bc48-4408-9be1-9b55223b761f",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "5b8cce76-1494-4e89-bcc0-d764aa3c594e",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[4]/td/h2",
+      "targets": [],
+      "value": "second_city_in_column"
+    }, {
+      "id": "8bed03b4-5f83-45a6-b1fd-13a89232dbaf",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${second_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "5c83c405-347b-4a5e-b013-5774699aed3c",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "dc9ba945-8267-42b5-add5-9e95aaaf94a8",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[7]/td/h2",
+      "targets": [],
+      "value": "third_city_in_column"
+    }, {
+      "id": "2c3fa2a6-a7f6-444b-bb47-724ceb9b4205",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${third_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "e9616e93-b8fe-4b76-bb62-f4b930f1af29",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "8bef685e-e8c3-4ef6-875a-3edf224007c9",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[10]/td/h2",
+      "targets": [],
+      "value": "fourth_city_in_column"
+    }, {
+      "id": "4860323e-09f4-41d0-ad8d-a29b46a277a4",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fourth_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "db6f66a7-71a8-4c90-9c36-ad52ab101355",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "8b8d1b4e-ba13-4045-bbd1-6836b1004c61",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[13]/td/h2",
+      "targets": [],
+      "value": "fifth_city_in_column"
+    }, {
+      "id": "e6d63f57-01a6-4df6-897b-06433c7bfd8b",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${fifth_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "4edb62b1-4a1b-4b37-8e47-ab6d1b20646f",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "02c16dee-3657-4916-8412-ad6751764531",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[16]/td/h2",
+      "targets": [],
+      "value": "sixth_city_in_column"
+    }, {
+      "id": "fd4c7f91-4ef0-44a0-b182-6dd15e168af5",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${sixth_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "0753bcba-5c00-498d-9ac4-c67eb23c2fcd",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "38c86487-947b-496e-9b0e-3b487af82eb0",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[19]/td/h2",
+      "targets": [],
+      "value": "seventh_city_in_column"
+    }, {
+      "id": "a3a1cae6-eb70-446a-abe0-67cf80b4c57d",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${seventh_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "b519bf10-f3e0-4cfa-99b1-0ac03ed5c09b",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "a4b055cf-1ca5-457b-8655-189db3b99c46",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[22]/td/h2",
+      "targets": [],
+      "value": "eighth_city_in_column"
+    }, {
+      "id": "be568db4-909e-4a6a-8cbc-b484061f7a83",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${eighth_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "c1b579f9-278e-459e-a790-b3b59b453454",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "e2b7420f-b962-499a-8972-d4d6a71b56db",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[25]/td/h2",
+      "targets": [],
+      "value": "ninth_city_in_column"
+    }, {
+      "id": "f8b10446-602a-4630-ba26-1bed6a608685",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ninth_city_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "cb27e0ef-204e-417f-af46-9a6cb04a045a",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }, {
+      "id": "8227b908-487b-4b1c-9346-7c4a25818e8f",
+      "comment": "",
+      "command": "storeText",
+      "target": "xpath=//tr[28]/td/h2",
+      "targets": [],
+      "value": "ten_row_in_column"
+    }, {
+      "id": "70a723d2-fea5-4339-bd3a-fc03e2e65fba",
+      "comment": "",
+      "command": "executeScript",
+      "target": "if (${ten_row_in_column}.match('Canada*')) { return true; } else { return false; };",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "0efce6e2-47a3-42bd-a772-e329a37ab6eb",
+      "comment": "",
+      "command": "assert",
+      "target": "x",
+      "targets": [],
+      "value": "true"
+    }]
+  }],
+  "suites": [{
+    "id": "8b553783-dde8-44b6-81ba-7e76f1879805",
+    "name": "Home page",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["90e13d0c-ef6d-4d92-bb1f-374c71397c4b", "968b7871-5359-491d-9f20-575874f38280", "0b9778ee-1b6c-4677-a9f3-6aa397c4aa6e", "0d42335d-0589-498f-bdbb-c244f87c2a68", "75b15e0a-7172-4cb0-b06a-e35aef8dda5f", "9ec702cd-2f33-4dfb-b3f8-6c947b94f538", "a1007aa8-4954-4af3-b803-ddc9df12b0cf", "7e4c8600-f3a4-4c22-82cb-7d5d9ed1d287"]
+  }, {
+    "id": "88c91a83-c1f6-45e9-90cf-94b20bc78077",
+    "name": "Quality of life page",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e0e31ba2-4297-4fe9-aacb-e2ef7404dd9b", "75b15e0a-7172-4cb0-b06a-e35aef8dda5f", "7d3f16f1-3b51-4a5d-a983-12ca6d138a4b"]
+  }, {
+    "id": "d8807172-e013-48df-a981-27aa99889e18",
+    "name": "Compare cities page",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["49d9474e-8bdf-436b-b28c-2f4fe0b1b14e"]
+  }, {
+    "id": "f779ae16-bd06-4bdc-8e45-329cc10cc5ac",
+    "name": "Quiz page",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["163d45a6-61f0-4226-9f84-da668cfa50a6"]
+  }, {
+    "id": "a4daade8-ed09-47aa-bcc5-5663db387441",
+    "name": "Result page",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d6a27d63-f65e-4bbd-a81f-63417563d86c", "5e2247a3-5c77-4732-8fe9-6cb248c667bf", "81e8f1ad-83b9-4630-92da-dbb6ea24b6ec"]
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}
