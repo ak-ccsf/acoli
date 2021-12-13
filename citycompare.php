@@ -18,6 +18,7 @@ $site_title = 'aqoli - Compare Cities';
         <div class="left">
             <div class="title"> <a href="index.php">Aqoli</a></div>
           <ul class="navbar">
+            <li class="navbar-links"><a href="about.html">About</a></li>
             <li class="navbar-links"><a href="qualityoflife.php">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
             <li class="navbar-links"><a href="myplacequiz.php">My Place Quiz</a></li>
@@ -160,7 +161,7 @@ $site_title = 'aqoli - Compare Cities';
                                 echo '</table></div>';
 
                             } else {
-				echo 'No results found for ';
+				echo '<div id="noResult">No results found for ';
 			        if($query1rows == 0){
 			            echo $city1;
 				    if($query2rows == 0) {
@@ -170,7 +171,7 @@ $site_title = 'aqoli - Compare Cities';
 				if($query2rows == 0) {
 				    echo $city2;
 				}
-				echo '. Please search something else.';
+				echo '. Please search something else.</div>';
 			    }
                         } else
                             echo '';
@@ -187,8 +188,8 @@ $site_title = 'aqoli - Compare Cities';
 
       <div class="footer">
         <ul class="bottom-links">
-          <li>About Us</li>
-          <li>Contact Information</li>
+	  <li class="footer-links"><a href="aboutus.html">About Us</a></li>
+          <li><a href="mailto:aqoli2021info@gmail.com">Contact Us</a></li>
           <li>Copyright © 2021 by CCSF</li>
         </ul>
       </div>

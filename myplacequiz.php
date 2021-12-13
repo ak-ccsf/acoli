@@ -17,6 +17,7 @@ $db = new SQLite3('aqoli.db');
         <div class="left">
             <div class="title"> <a href="index.php">Aqoli</a></div>
           <ul class="navbar">
+            <li class="navbar-links"><a href="about.html">About</a></li>
             <li class="navbar-links"><a href="qualityoflife.php">Quality of Life</a></li>
             <li class="navbar-links"><a href="citycompare.php">City Compare</a></li>
             <li class="navbar-links"><a href="myplacequiz.php">My Place Quiz</a></li>
@@ -263,7 +264,7 @@ $db = new SQLite3('aqoli.db');
                                 </div></div>
                                 <div class="filters-form-lable">
                                     <label for="chosenRegions">Selected Regions:</label>
-                                        <select id="chosenRegions" multiple>
+                                        <select id="chosenRegions" multiple style="width:25em">
                                         </select>
                                         <textarea form="bestPlaceQuiz" id="regionsText" name="regionsText" readonly>;;</textarea>
                                     <input type="button" onclick="removeRegion()" value="Remove">
@@ -285,8 +286,8 @@ $db = new SQLite3('aqoli.db');
 
       <div class="footer">
         <ul class="bottom-links">
-          <li>About Us</li>
-          <li>Contact Information</li>
+	  <li class="footer-links"><a href="aboutus.html">About Us</a></li>
+          <li><a href="mailto:aqoli2021info@gmail.com">Contact Us</a></li>
           <li>Copyright © 2021 by CCSF</li>
         </ul>
       </div>

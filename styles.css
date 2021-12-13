@@ -120,6 +120,15 @@ body {
 
   }
 
+.footer a {
+    color: #FEFEFE;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
 .navbar{
     list-style-type: none;
     display: flex;
