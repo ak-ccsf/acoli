@@ -3,6 +3,8 @@
 import sqlite3
 import unittest
 
+
+# This class uses unittest to perform several tests on the aqoli.db database
 class Testing(unittest.TestCase):
 
     # test_connection() - Check connection to database
@@ -119,6 +121,29 @@ class Testing(unittest.TestCase):
         dup_ids = cur.execute('''SELECT COUNT(*) FROM
                                  (SELECT COUNT(city_id)
                                  FROM climate
+                                 GROUP BY city_id
+                                 HAVING COUNT(city_id) > 1)
+                              ''').fetchone()[0]
+        conn.close()
+        self.assertEqual(dup_ids, 0)
+
+
+    # test_image_urls() - Check image_urls table exists and has > 1 rows
+    def test_image_urls(self):
+        conn = sqlite3.connect('../aqoli.db')
+        cur = conn.cursor()
+        climate = cur.execute('SELECT COUNT(*) FROM image_urls').fetchone()[0]
+        conn.close()
+        self.assertTrue(climate > 1)
+
+
+    # test_image_ids() - ensure image_urls table contains no duplicate city ids
+    def test_image_ids(self):
+        conn = sqlite3.connect('../aqoli.db')
+        cur = conn.cursor()
+        dup_ids = cur.execute('''SELECT COUNT(*) FROM
+                                 (SELECT COUNT(city_id)
+                                 FROM image_urls
                                  GROUP BY city_id
                                  HAVING COUNT(city_id) > 1)
                               ''').fetchone()[0]
