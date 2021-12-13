@@ -12,6 +12,7 @@ $site_title = 'aqoli';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $site_title; ?></title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="website_logo.jpg"/>
 </head>
 
 <body>
