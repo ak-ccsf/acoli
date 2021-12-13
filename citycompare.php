@@ -133,7 +133,7 @@ $site_title = 'aqoli - Compare Cities';
 
                                 $rows = array();
                                 $row = array();
-                                $row[] = "Indexes";
+                                $row[] = "Indices";
                                 $rows[] = $row;
                                 $colNums = $query1->numColumns() - 1;
                                 for($i = 1; $i < $colNums; $i++) {
@@ -155,7 +155,13 @@ $site_title = 'aqoli - Compare Cities';
                                 foreach ($rows as $row) {
                                     echo '<tr>';
                                     foreach ($row as $col) {
-                                        echo '<td>' . $col . '</td>';
+			                echo '<td>';
+					if($col == '') {
+						echo 'Not Enough Data';
+					} else {
+					    echo $col;
+					}
+			    		echo '</td>';
                                     };
                                     echo '</tr>';
                                 }
